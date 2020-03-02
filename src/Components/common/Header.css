@@ -1,0 +1,42 @@
+.menu__items {
+  margin: 1rem 1rem;
+  font-size: large;
+  font-weight: 700;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+.menu__items-item {
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: whitesmoke;
+  position: relative;
+}
+.menu__items-item:hover {
+  animation: drop 1s ease-out reverse infinite;
+  transition: all 2s;
+  border-radius: 20rem;
+}
+.item-right {
+  margin-left: auto;
+  margin-right: 5rem;
+  display: flex;
+}
+.m-right {
+  border: 2px solid black;
+  border-radius: 5rem;
+}
+
+@keyframes drop {
+  0% {
+    border-bottom: 0.25rem solid white;
+  }
+  50% {
+    border-radius: 20rem;
+    border-bottom: 0.1rem solid white;
+  }
+  100% {
+    border-bottom: 0.2rem solid white;
+  }
+}
