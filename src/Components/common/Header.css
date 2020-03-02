@@ -1,10 +1,13 @@
 .menu__items {
   margin: 1rem 1rem;
+  padding: 1rem 0rem;
   font-size: large;
   font-weight: 700;
   display: flex;
   position: sticky;
   top: 0;
+  flex-flow: wrap;
+  z-index: 1;
 }
 .menu__items-item {
   margin: 0 1rem;
@@ -20,11 +23,11 @@
 }
 .item-right {
   margin-left: auto;
-  margin-right: 5rem;
+  margin-right: 7rem;
   display: flex;
 }
 .m-right {
-  border: 2px solid black;
+  border: 0.21rem solid black;
   border-radius: 5rem;
 }
 
