@@ -2,6 +2,7 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { IoMdRestaurant } from "react-icons/io";
 import { Link } from "react-router-dom";
+import "./Home.css";
 const Home = () => {
   return (
     <div className="main__container">

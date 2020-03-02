@@ -9,27 +9,36 @@ const Footer = () => {
           <div className="main__footer-column">
             <h4 className="main__footer-heading">About</h4>
             <div className="main__footer-links">
-              <Link className="footer-item">Sitemap</Link>
+              <Link className="footer-item">Jobs</Link>
               <Link className="footer-item">Contact Us</Link>
-              <Link className="footer-item">Religious Ceremonies</Link>
-              <Link className="footer-item">Gazebo Plans</Link>
+              <Link className="footer-item">Customer Support</Link>
+              <Link className="footer-item">Future Plans</Link>
             </div>
           </div>
           <div className="main__footer-column">
             <h4 className="main__footer-heading">Services</h4>
             <div className="main__footer-links">
-              <Link className="footer-item">Banana Pre-Order</Link>
-              <Link className="footer-item">DNA FAQ</Link>
+              <Link className="footer-item">Data Policy</Link>
+              <Link className="footer-item">FAQ</Link>
               <Link className="footer-item">How To Access</Link>
-              <Link className="footer-item">Favorite X-Men</Link>
+              <Link className="footer-item">Advertise</Link>
             </div>
           </div>
           <div className="main__footer-column">
-            <h4 className="main__footer-heading">Footer Header</h4>
+            <h4 className="main__footer-heading">@Recipe Advisor</h4>
             <p>
-              Extra space for a call to action inside the footer that could help
-              re-engage users.
+              Project based on IEEE paper -Recommendation of Indian Cuisine
+              Recipes based on Ingredients
             </p>
+
+            <p>Project Members - </p>
+            <ul>
+              <li>Utkarsh Mishra</li>
+              <li>Mohammed Idrees </li>
+              <li>Rahul Deb Barma</li>
+              <li>Rohit Kumar Mishra</li>
+            </ul>
+            <p>All Rights Reserved. &copy;2019-2020</p>
           </div>
         </div>
       </div>

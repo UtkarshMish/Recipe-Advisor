@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Header.css";
 class Header extends Component {
   state = {};
   render() {
@@ -16,7 +15,7 @@ class Header extends Component {
           Guide
         </Link>
         <div className="item-right">
-          <Link to="/" className="menu__items-item m-right ">
+          <Link to="/login" className="menu__items-item m-right ">
             Log in
           </Link>
           <Link to="/" className="menu__items-item m-right">

@@ -1,0 +1,48 @@
+/*Home CSS */
+.main__container {
+  padding: 9.8rem 0;
+  text-align: center;
+  margin: 3rem;
+  height: 100%;
+}
+.main__title {
+  font-size: 3rem;
+  background: radial-gradient(
+      circle at bottom left,
+      #ff8a00,
+      #e52e71,
+      rgba(233, 99, 21, 0.884)
+    )
+    no-repeat;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sub-main__title {
+  font-size: 1.4rem;
+}
+.main__button {
+  font-size: 1.5rem;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  margin: auto;
+  align-items: center;
+  width: fit-content;
+  border-radius: 0.5rem;
+  padding: 1.2rem 0.8rem;
+  text-decoration: none;
+  color: #000;
+  background: linear-gradient(to left, rgb(247, 19, 133), rgb(255, 55, 89));
+}
+.main__button:hover {
+  transform: translateY(-3%);
+  transition: all 0.3s;
+}
+.main__button:active {
+  transform: translateY(0);
+  background: linear-gradient(to right, rgba(245, 91, 150, 0.959), #ee3d7e);
+}
+.icon {
+  display: inline-block;
+  padding: 0 0.5rem;
+}
