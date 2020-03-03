@@ -18,7 +18,7 @@ class Header extends Component {
           <Link to="/login" className="menu__items-item m-right ">
             Log in
           </Link>
-          <Link to="/" className="menu__items-item m-right">
+          <Link to="/signup" className="menu__items-item m-right">
             Sign up
           </Link>
         </div>

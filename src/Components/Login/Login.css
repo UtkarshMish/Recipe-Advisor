@@ -5,15 +5,16 @@
   padding: 6.6rem;
 }
 .login__box {
-  padding: 2rem;
+  padding: 5rem;
+  margin: 0 25%;
   border-radius: 2rem;
-  border: 2px solid #223;
+  border: 2px solid rgb(85, 85, 153);
   max-width: 80%;
   text-align: center;
   background: repeating-radial-gradient(
     ellipse at bottom,
     rgba(241, 194, 241, 0.021),
-    #7230515d,
+    #ec61a69c,
     #9c8b9b80,
     transparent 90%
   );
@@ -27,6 +28,7 @@
 }
 .login__title {
   margin: 1rem;
+  text-transform: capitalize;
 }
 .input__box {
   border-radius: 10rem;
@@ -39,6 +41,7 @@
 .input__box:focus {
   transform: scale(1.01);
   transition: all 0.2s;
+  outline: none;
 }
 .input__box:placeholder-shown {
   font-size: 1.01rem;

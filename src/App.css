@@ -11,6 +11,14 @@
   );
   backdrop-filter: blur(0.1rem) brightness(2) saturation(10);
 }
+.fullscreen-bg__video {
+  z-index: -2;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 /* Header CSS */
 .menu__items {
   margin: 1rem 1rem;
@@ -31,7 +39,7 @@
   position: relative;
 }
 .menu__items-item:hover {
-  animation: drop 1s ease-out reverse infinite;
+  animation: drop 0.4s reverse infinite;
   transition: all 2s;
   border-radius: 20rem;
 }

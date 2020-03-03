@@ -33,10 +33,10 @@ const Footer = () => {
 
             <p>Project Members - </p>
             <ul>
-              <li>Utkarsh Mishra</li>
               <li>Mohammed Idrees </li>
               <li>Rahul Deb Barma</li>
               <li>Rohit Kumar Mishra</li>
+              <li>Utkarsh Mishra</li>
             </ul>
             <p>All Rights Reserved. &copy;2019-2020</p>
           </div>

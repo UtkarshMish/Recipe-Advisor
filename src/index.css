@@ -7,8 +7,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
 
-  background: url("./Images/recipe-background.jpeg") center center fixed
-    no-repeat;
+  /* background: url("./Images/recipe-background.jpeg") center center fixed
+    no-repeat; */
   background-size: cover;
   font-size: 62.5%;
   color: whitesmoke;

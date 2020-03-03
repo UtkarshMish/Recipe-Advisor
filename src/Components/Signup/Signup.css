@@ -1,0 +1,32 @@
+.signup__container {
+  text-align: center;
+}
+.signup__box {
+  border: 2px solid #e52e7157;
+  border-radius: 2rem;
+  margin: 8rem 30%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to top right, #1ab0eca1, transparent);
+}
+.signup__title {
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.signup__heading {
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+/* miscellaneous */
+.link__item {
+  text-decoration: none;
+  color: #e2f818;
+}
+.link__item:hover {
+  transform: scale(1.2);
+  transition: all 0.1s;
+}
