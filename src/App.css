@@ -20,7 +20,7 @@
   font-weight: 700;
   display: flex;
   top: 0;
-  flex-flow: wrap;
+  flex-flow: wrap-reverse;
   z-index: 1;
 }
 .menu__items-item {
@@ -64,17 +64,27 @@
 
 /*Footer CSS*/
 .main__footer-container {
-  background-color: rgb(31, 30, 30);
+  background: radial-gradient(
+    circle at top,
+    rgba(61, 11, 34, 0.582),
+    #e52e7157,
+    #e948a124,
+    transparent 80%
+  );
   font-size: 0.8rem;
   padding: 2rem 10rem;
 }
 .main__footer-row {
   display: flex;
-  align-content: space-between;
-  justify-content: space-between;
+
+  justify-content: space-evenly;
+}
+.main__footer-column {
+  margin: 1rem;
 }
 .main__footer-heading {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .main__footer-links {
   display: flex;
