@@ -7,6 +7,8 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
+import Browse from "./Components/Browse/Browse";
+import Guide from "./Components/Guide/Guide";
 
 function App() {
   return (
@@ -23,10 +25,16 @@ function App() {
         <Header />
         <React.Fragment>
           <Switch>
-            <Route path="/recipe/:id?" className=" item" exact />
+            <Route
+              path="/browse/:recipe?/:id?"
+              component={Browse}
+              className=" item"
+              exact
+            />
+            <Route path="/guide" component={Guide} className=" item" exact />
             <Route path="/login" component={Login} className=" item" exact />
             <Route path="/signup" component={Signup} className=" item" exact />
-            <Route path="/recipe/:id/:tab?" className=" item" />
+            <Route path="/browse/:recipe?/:id/:tab?" className=" item" />
             <Route path="/" component={Home} className=" item" />
           </Switch>
         </React.Fragment>

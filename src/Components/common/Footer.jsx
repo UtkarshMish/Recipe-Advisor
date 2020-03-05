@@ -33,12 +33,18 @@ const Footer = () => {
 
             <p>Project Members - </p>
             <ul>
-              <li>Mohammed Idrees </li>
-              <li>Rahul Deb Barma</li>
-              <li>Rohit Kumar Mishra</li>
-              <li>Utkarsh Mishra</li>
+              <li>Mohammed Idrees - 1KN16IS015 </li>
+              <li>Rahul Deb Barma - 1KN16IS025</li>
+              <li>Rohit Kumar Mishra - 1KN16IS026</li>
+              <li>Utkarsh Mishra - 1KN16IS037</li>
             </ul>
-            <p>All Rights Reserved. &copy;2019-2020</p>
+            <p>Under the guidance of - </p>
+            <p style={{ fontSize: "1rem", color: "yellow" }}>
+              Mr. Kantharaju
+              <br />
+              Prof. , Dept of ISE
+            </p>
+            <p>All Rights Reserved. &copy;2020</p>
           </div>
         </div>
       </div>

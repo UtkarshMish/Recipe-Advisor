@@ -36,6 +36,7 @@
 }
 .main__button:hover {
   transform: translateY(-3%);
+  color: whitesmoke;
   transition: all 0.3s;
 }
 .main__button:active {

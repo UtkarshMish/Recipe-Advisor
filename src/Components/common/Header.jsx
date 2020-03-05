@@ -8,10 +8,10 @@ class Header extends Component {
         <Link to="/" className="menu__items-item ">
           Home
         </Link>
-        <Link to="/" className="menu__items-item ">
+        <Link to="/browse" className="menu__items-item ">
           Browse
         </Link>
-        <Link to="/" className="menu__items-item ">
+        <Link to="/guide" className="menu__items-item ">
           Guide
         </Link>
         <div className="item-right">
