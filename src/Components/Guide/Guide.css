@@ -2,8 +2,14 @@
   margin: 10%;
   text-align: center;
 }
+.input__container {
+  display: inherit;
+  align-items: center;
+  margin: auto;
+}
 .add__link-button {
   margin: auto;
+  margin-bottom: 1rem;
   padding: 1.1rem;
   background-color: #e0045557;
   color: whitesmoke;
@@ -12,6 +18,4 @@
 .recipe__guess-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 35%;
 }

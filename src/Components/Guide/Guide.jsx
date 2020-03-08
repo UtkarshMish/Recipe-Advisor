@@ -47,7 +47,7 @@ class Guide extends Component {
                   <input
                     type="text"
                     className="input__box"
-                    placeholder={`Ingredient ${num}`}
+                    placeholder={`Add Ingredient`}
                   />
                   <button
                     value={num}
