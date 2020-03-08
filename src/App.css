@@ -1,3 +1,17 @@
+/*Animations */
+
+@keyframes drop {
+  0% {
+    box-shadow: 0.11rem 0.11rem 1rem;
+  }
+  50% {
+    box-shadow: 0.01rem 0.01rem 5rem;
+  }
+  100% {
+    box-shadow: 0.11rem 0.11rem 1rem;
+  }
+}
+/*Properties*/
 .App {
   width: 100%;
 
@@ -24,7 +38,7 @@
   margin: 1rem 1rem;
   margin-top: 0;
   padding: 1rem 0rem;
-  font-size: large;
+  font-size: 1.4rem;
   font-weight: 700;
   display: flex;
   top: 0;
@@ -39,9 +53,9 @@
   position: relative;
 }
 .menu__items-item:hover {
-  animation: drop 0.4s reverse infinite;
-  transition: all 2s;
+  transition: all 1s;
   border-radius: 20rem;
+  box-shadow: 0.1rem 0.1rem;
 }
 .item-right {
   margin-left: auto;
@@ -55,19 +69,6 @@
 .m-right:hover {
   background-color: #e52e71;
   transition: all 0.2s;
-}
-
-@keyframes drop {
-  0% {
-    border-bottom: 0.25rem solid white;
-  }
-  50% {
-    border-radius: 20rem;
-    border-bottom: 0.1rem solid white;
-  }
-  100% {
-    border-bottom: 0.2rem solid white;
-  }
 }
 
 /*Footer CSS*/
@@ -107,4 +108,77 @@
 .footer-item:hover {
   transform: scale(1.2) rotate(-2deg);
   transition: all 0.1s;
+  line-height: 1.5rem;
+  animation: drop 2s reverse ease-in;
+}
+
+/* common */
+.recipe__container {
+  display: flex;
+  color: whitesmoke;
+  background: radial-gradient(
+    circle at center bottom,
+    #201d3856,
+    transparent 80%
+  );
+  padding: 0 10%;
+  flex-direction: column;
+}
+.recipe__row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.recipe__card {
+  margin: 1.5rem 0;
+  padding: 0.4rem 2.5rem 1rem 2.5rem;
+  background: linear-gradient(to top right, #030c8fc7, #ca064e);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recipe__title {
+  display: flex;
+  border-bottom: 0.1rem solid whitesmoke;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.recipe__title > h5 {
+  font-size: 1.2rem;
+}
+.recipe__content {
+  padding: 8rem 5rem;
+}
+/* Pagination */
+.pagination {
+  padding: 0 2rem;
+  margin: 1rem;
+}
+.menu__pages {
+  text-align: center;
+  font-size: 1.2rem;
+}
+.page_no {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(231, 236, 227);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(25, 8, 66, 0.897);
+}
+.page_no:hover {
+  transform: translateY(-0.3rem) scale(1.1);
+}
+.page_no:active {
+  transform: none;
+}
+.recipe__button {
+  padding: 1.2rem;
+  margin: auto;
+  text-decoration: none;
+  color: antiquewhite;
+  border-radius: 10%;
+  background-color: #ca064e;
 }
