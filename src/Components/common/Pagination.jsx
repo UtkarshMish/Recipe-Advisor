@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 const Pagination = () => {
   return (
     <div className="menu__pages">
-      <Link className="page_no">1</Link>
+      <Link to="browse/recipe/" className="page_no">
+        1
+      </Link>
     </div>
   );
 };

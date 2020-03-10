@@ -76,7 +76,7 @@ class Guide extends Component {
               <div className="submit__container">
                 <input
                   type="submit"
-                  value="Submit !"
+                  value="Get Recipe !"
                   className="input__box form__submit"
                 />
               </div>
