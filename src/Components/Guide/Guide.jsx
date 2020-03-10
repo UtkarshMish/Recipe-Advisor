@@ -18,14 +18,20 @@ class Guide extends Component {
   };
   removeInput = e => {
     let { count } = this.state;
+
+    let item = parseInt(e.target.value);
+    if (isNaN(item)) {
+      item = parseInt(e.currentTarget.value);
+    }
     if (isNaN(count[0]) || count.length < 2) {
       count = [1];
     } else {
-      const index = count.indexOf(parseInt(e.target.value));
-      if (index > -1) count.splice(index, 1);
-      else count = [1];
+      count = count.filter(ele => ele !== item);
     }
     this.setState({ count });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
   };
   render() {
     const { count } = this.state;
@@ -33,35 +39,48 @@ class Guide extends Component {
       <React.Fragment>
         <div className="guide__container">
           <div className="recipe__guess-form">
-            <div className="guess-form__header">
-              <h3 className="sub-main__title">
-                Add the Ingredients to get recommendations !
-              </h3>
-            </div>
-            {count.map(num => {
-              if (num > 10) {
-                return <h5>Can't add more !!! </h5>;
-              }
-              return (
-                <div key={num} className="input__container">
-                  <input
-                    type="text"
-                    className="input__box"
-                    placeholder={`Add Ingredient`}
-                  />
-                  <button
-                    value={num}
-                    className="add__link-button"
-                    onClick={e => this.removeInput(e)}
-                  >
-                    <TiMinus />
-                  </button>
-                </div>
-              );
-            })}
-            <button className="add__link-button" onClick={this.addInput}>
-              <TiPlus />
-            </button>
+            <form
+              action=""
+              onSubmit={e => this.handleSubmit(e)}
+              className="input__form"
+            >
+              <div className="guess-form__header">
+                <h3 className="sub-main__title">
+                  Add the Ingredients to get recommendations !
+                </h3>
+              </div>
+              {count.map(num => {
+                if (num > 10) {
+                  return <h2 key={num}>Can't add more !!! </h2>;
+                }
+                return (
+                  <div key={num} className="input__container">
+                    <input
+                      type="text"
+                      className="input__box"
+                      placeholder={`Add Ingredient ${num}`}
+                    />
+                    <button
+                      value={num}
+                      className="add__link-button"
+                      onClick={e => this.removeInput(e)}
+                    >
+                      <TiMinus />
+                    </button>
+                  </div>
+                );
+              })}
+              <button className="add__link-button" onClick={this.addInput}>
+                <TiPlus />
+              </button>
+              <div className="submit__container">
+                <input
+                  type="submit"
+                  value="Submit !"
+                  className="input__box form__submit"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </React.Fragment>

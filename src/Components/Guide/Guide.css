@@ -1,11 +1,15 @@
 .guide__container {
-  margin: 10%;
+  padding: 10%;
   text-align: center;
+  background: radial-gradient(circle at bottom, #252f3da1, transparent 40%);
 }
 .input__container {
   display: inherit;
   align-items: center;
   margin: auto;
+}
+.input__container > .add__link-button {
+  margin-left: 1rem;
 }
 .add__link-button {
   margin: auto;
@@ -14,6 +18,7 @@
   background-color: #e0045557;
   color: whitesmoke;
   border-radius: 1.2rem;
+  z-index: 1;
 }
 .recipe__guess-form {
   display: flex;
