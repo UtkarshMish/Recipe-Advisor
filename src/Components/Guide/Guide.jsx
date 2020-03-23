@@ -3,7 +3,14 @@ import "./Guide.css";
 import { TiPlus, TiMinus } from "react-icons/ti";
 class Guide extends Component {
   state = {
-    count: [1]
+    count: [1],
+    ingredients: []
+  };
+  updateValue = e => {
+    const name = parseInt(e.target.name);
+    const { ingredients } = this.state;
+    ingredients[name - 1] = e.target.value;
+    this.setState({ ingredients });
   };
   addInput = () => {
     let { count } = this.state;
@@ -61,7 +68,9 @@ class Guide extends Component {
                     <input
                       type="text"
                       className="input__box"
+                      name={`${num}`}
                       placeholder={`Add Ingredient ${num}`}
+                      onInput={e => this.updateValue(e)}
                     />
                     <button
                       value={num}

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import "./Login.css";
 class Login extends Component {
-  state = {};
+  state = {
+    email: "",
+    password: ""
+  };
   handleSubmit = e => {
     e.preventDefault();
+  };
+  updateValue = e => {
+    const name = e.target.name;
+    this.setState({ [name]: e.target.value });
   };
   render() {
     return (
@@ -13,12 +20,13 @@ class Login extends Component {
             <div className="login__heading">Log In with email</div>
             <p>If you are Existing Recipe Advisor user</p>
           </div>
-          <form action="" onSubmit={e => this.handleSubmit(e)}>
+          <form onSubmit={e => this.handleSubmit(e)}>
             <div className="view__column">
               <input
                 placeholder="Email"
                 type="email"
                 name="email"
+                onInput={e => this.updateValue(e)}
                 className="input__box email"
                 required
               />
@@ -27,6 +35,7 @@ class Login extends Component {
                 placeholder="Password"
                 type="password"
                 name="password"
+                onInput={e => this.updateValue(e)}
                 className="input__box password"
                 required
               />

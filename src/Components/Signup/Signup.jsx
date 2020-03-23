@@ -3,6 +3,10 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 class Signup extends Component {
   state = {};
+  updateValue = e => {
+    const name = e.target.name;
+    this.setState({ [name]: e.target.value });
+  };
   handleSubmit = e => {
     e.preventDefault();
   };
@@ -16,13 +20,14 @@ class Signup extends Component {
               Existing Recipe Advisor user? Log In
             </Link>
           </div>
-          <form action="" onSubmit={e => this.handleSubmit(e)}>
+          <form onSubmit={e => this.handleSubmit(e)}>
             <div className="view__column">
               <input
                 placeholder="Display Name"
                 type="text"
                 name="user_name"
                 className="input__box user_name"
+                onInput={e => this.updateValue(e)}
                 required
               />
               <input
@@ -30,6 +35,7 @@ class Signup extends Component {
                 type="email"
                 name="email"
                 className="input__box email"
+                onInput={e => this.updateValue(e)}
                 required
               />
 
@@ -38,6 +44,7 @@ class Signup extends Component {
                 type="password"
                 name="password"
                 className="input__box password"
+                onInput={e => this.updateValue(e)}
                 pattern="(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}"
                 title="6 character with an uppercase and a special character"
                 required
