@@ -27,6 +27,9 @@ class Guide extends Component {
       count = [1];
     } else {
       count = count.filter(ele => ele !== item);
+      for (let index = 0; index < count.length; index++) {
+        count[index] = index + 1;
+      }
     }
     this.setState({ count });
   };
