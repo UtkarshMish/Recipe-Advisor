@@ -15,10 +15,20 @@
   background: linear-gradient(to right, #491830cb, #e948a124);
 }
 .greet__user {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   font-size: 1.2rem;
   font-weight: bold;
+  background: linear-gradient(to top, #e9da0f85, #e9c76b57) !important;
+  color: rgb(93, 12, 199);
+  padding: 1rem 2rem !important;
+  border-radius: 1.5rem !important;
+}
+.greet__user:hover {
+  transform: scale(1.12);
+  transition: all 0.4s;
+  box-shadow: 0.2rem 0.2rem !important;
 }
 .dashboard__body {
   padding: 20rem 1rem;

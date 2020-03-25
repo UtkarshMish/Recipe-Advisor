@@ -16,6 +16,6 @@ export const checkAPI = async (user, token) => {
     let response = await axios.post("/api/verify-token", { user, token });
     return response.data.value;
   } catch (e) {
-    return false;
+    return { error: e };
   }
 };

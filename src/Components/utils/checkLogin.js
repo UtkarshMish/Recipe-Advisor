@@ -1,14 +1,8 @@
 import { checkAPI } from "./storeToken";
 
 export const isLoggedIn = async () => {
-  try {
-    const auth = await checkAPI();
-    if (auth) {
-      return true;
-    } else return false;
-  } catch (e) {
-    return false;
-  }
+  const auth = await checkAPI();
+  return auth;
 };
 export const loggedOut = () => {
   localStorage.clear();

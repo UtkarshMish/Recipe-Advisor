@@ -12,24 +12,55 @@ import Guide from "./Components/Guide/Guide";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
 import { isLoggedIn } from "./Components/utils/checkLogin";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 class App extends Component {
   state = {
-    loggedIn: false
+    loggedIn: false,
+    isLoading: true,
+    error: []
   };
-  UNSAFE_componentWillMount = async () => {
+
+  componentDidMount = async () => {
     const auth = await isLoggedIn();
-    if (auth) {
-      return await this.setState({ loggedIn: true });
+    let error = this.state;
+
+    if (auth.error) {
+      error = String(auth["error"]).split(10);
+      toast.error(error[0], {
+        position: toast.POSITION.TOP_CENTER
+      });
+      return this.setState({ error, isLoading: false });
     }
+    return this.setState({ loggedIn: auth, isLoading: false });
   };
   updateUser = async () => {
-    const auth = await isLoggedIn();
-    if (auth) {
-      return await this.setState({ loggedIn: true });
-    } else return await this.setState({ loggedIn: false });
+    const auth = (await isLoggedIn()) || false;
+    return this.setState({ loggedIn: auth });
   };
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, isLoading, error } = this.state;
+    if (isLoading)
+      return (
+        <React.Fragment>
+          <video
+            muted
+            autoPlay
+            className="fullscreen-bg__video"
+            title="./Images/recipe-background.jpeg"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+          <div className="App">
+            {error[0] ? <ToastContainer /> : null}
+            <div className="loading__container">
+              <AiOutlineLoading3Quarters className="loader" />
+            </div>
+          </div>
+        </React.Fragment>
+      );
     return (
       <React.Fragment>
         <video

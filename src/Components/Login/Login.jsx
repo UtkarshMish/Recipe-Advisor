@@ -6,14 +6,15 @@ import { setUserApi } from "../utils/storeToken";
 
 class Login extends Component {
   state = {
-    email: "",
-    password: ""
+    users: { email: "", password: "" },
+    fail: undefined
   };
 
   handleSubmit = async e => {
     e.preventDefault();
     let response = false;
-    response = await checkLogin(this.state);
+    const { users } = this.state;
+    response = await checkLogin(users);
     if (response.value === "true") {
       if (setUserApi(response.username, response.token)) {
         await this.setState({ loggedIn: true });
@@ -31,7 +32,9 @@ class Login extends Component {
   };
   updateValue = e => {
     const name = e.target.name;
-    this.setState({ fail: undefined, [name]: e.target.value });
+    const { users } = this.state;
+    users[name] = e.target.value;
+    this.setState({ fail: undefined, users });
   };
   render() {
     return (
@@ -59,6 +62,7 @@ class Login extends Component {
                 onInput={e => this.updateValue(e)}
                 className="input__box password"
                 required
+                autoComplete={"true"}
               />
               {this.state.fail ? (
                 <p className="alert__box">

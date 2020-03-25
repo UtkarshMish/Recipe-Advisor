@@ -4,29 +4,39 @@ import { Link } from "react-router-dom";
 import { signUp } from "../utils/signup";
 import { setUserApi } from "../utils/storeToken";
 class Signup extends Component {
-  state = {};
+  state = {
+    users: {
+      user_name: "",
+      email: "",
+      password: ""
+    },
+    exist: false
+  };
   updateValue = e => {
     const name = e.target.name;
+    const { users } = this.state;
+    users[name] = e.target.value;
     if (e.target.name === "email" && this.state.exist)
-      this.setState({ exist: undefined });
-    return this.setState({ [name]: e.target.value });
+      this.setState({ exist: false });
+    return this.setState({ users });
   };
   UNSAFE_componentWillMount = () => {
-    if (this.state.loggedIn === true || this.props.loggedIn === true) {
+    if (this.props.loggedIn === true) {
       this.props.history.push("/dashboard");
     }
   };
   handleSubmit = async e => {
     e.preventDefault();
     let response = false;
-    response = await signUp(this.state);
+    const { users } = this.state;
+    response = await signUp(users);
     if (response.value === "sucess") {
       this.setState({ exist: false });
     }
     if (response.value === "exist") {
       return this.setState({ exist: true });
     } else if (setUserApi(response.username, response.token)) {
-      await this.setState({ loggedIn: true });
+      this.props.history.push("/dashboard");
       return this.props.updateUser();
     }
   };

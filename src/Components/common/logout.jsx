@@ -4,7 +4,8 @@ import { loggedOut } from "../utils/checkLogin";
 const Logout = props => {
   loggedOut();
   props.updateUser();
-  return <Redirect to="/login" />;
+  props.history.push("/login");
+  return null;
 };
 
 export default Logout;
