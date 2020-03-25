@@ -16,6 +16,9 @@ class Header extends Component {
         </Link>
         {this.props.loggedIn ? (
           <div className="item-right">
+            <Link to="/dashboard" className="menu__items-item m-right ">
+              Dashboard
+            </Link>
             <Link to="/logout" className="menu__items-item m-right ">
               Log Out
             </Link>

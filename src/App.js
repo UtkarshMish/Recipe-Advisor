@@ -22,10 +22,11 @@ class App extends Component {
       return await this.setState({ loggedIn: true });
     }
   };
-  updateUser = async value => {
-    let loggedIn = this.state;
-    loggedIn = value;
-    return await this.setState({ loggedIn });
+  updateUser = async () => {
+    const auth = await isLoggedIn();
+    if (auth) {
+      return await this.setState({ loggedIn: true });
+    } else return await this.setState({ loggedIn: false });
   };
   render() {
     const { loggedIn } = this.state;

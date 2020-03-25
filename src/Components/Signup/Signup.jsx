@@ -27,7 +27,7 @@ class Signup extends Component {
       return this.setState({ exist: true });
     } else if (setUserApi(response.username, response.token)) {
       await this.setState({ loggedIn: true });
-      return this.props.updateUser(true);
+      return this.props.updateUser();
     }
   };
   render() {

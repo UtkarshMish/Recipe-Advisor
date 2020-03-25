@@ -17,7 +17,7 @@ class Login extends Component {
     if (response.value === "true") {
       if (setUserApi(response.username, response.token)) {
         await this.setState({ loggedIn: true });
-        return this.props.updateUser(true);
+        return this.props.updateUser();
       }
     }
     if (response.value === "false") {
