@@ -14,14 +14,22 @@ class Header extends Component {
         <Link to="/guide" className="menu__items-item ">
           Guide
         </Link>
-        <div className="item-right">
-          <Link to="/login" className="menu__items-item m-right ">
-            Log in
-          </Link>
-          <Link to="/signup" className="menu__items-item m-right">
-            Sign up
-          </Link>
-        </div>
+        {this.props.loggedIn ? (
+          <div className="item-right">
+            <Link to="/logout" className="menu__items-item m-right ">
+              Log Out
+            </Link>
+          </div>
+        ) : (
+          <div className="item-right">
+            <Link to="/login" className="menu__items-item m-right ">
+              Log in
+            </Link>
+            <Link to="/signup" className="menu__items-item m-right">
+              Sign up
+            </Link>
+          </div>
+        )}
       </div>
     );
   }

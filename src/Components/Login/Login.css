@@ -35,15 +35,17 @@
   padding: 1rem;
   max-width: 80%;
   margin-bottom: 1rem;
+  font-size: 1rem;
   border: 0.1rem solid black;
 }
+.input__box:placeholder-shown {
+  transform: scale(0.85);
+  transition: all 0.2s ease-in;
+}
 .input__box:focus {
-  transform: scale(1.01);
+  transform: scale(1.02);
   transition: all 0.2s;
   outline: none;
-}
-.input__box:placeholder-shown {
-  font-size: 1.01rem;
 }
 .view__column {
   display: flex;

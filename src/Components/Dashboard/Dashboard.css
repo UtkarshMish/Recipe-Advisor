@@ -1,0 +1,25 @@
+.dashboard__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  align-items: center;
+}
+.dashboard__heading {
+  margin: 0 1rem;
+  padding: 0 1em;
+  border: 1px solid rgba(255, 0, 255, 0.377);
+  border-radius: 2rem;
+  width: fit-content;
+
+  background: linear-gradient(to right, #491830cb, #e948a124);
+}
+.greet__user {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.dashboard__body {
+  padding: 20rem 1rem;
+}

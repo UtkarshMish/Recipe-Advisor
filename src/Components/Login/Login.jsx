@@ -1,16 +1,37 @@
 import React, { Component } from "react";
+
 import "./Login.css";
+import { checkLogin } from "../utils/login";
+import { setUserApi } from "../utils/storeToken";
+
 class Login extends Component {
   state = {
     email: "",
     password: ""
   };
-  handleSubmit = e => {
+
+  handleSubmit = async e => {
     e.preventDefault();
+    let response = false;
+    response = await checkLogin(this.state);
+    if (response.value === "true") {
+      if (setUserApi(response.username, response.token)) {
+        await this.setState({ loggedIn: true });
+        return this.props.updateUser(true);
+      }
+    }
+    if (response.value === "false") {
+      return this.setState({ fail: true });
+    }
+  };
+  UNSAFE_componentWillMount = () => {
+    if (this.state.loggedIn === true || this.props.loggedIn === true) {
+      this.props.history.push("/dashboard");
+    }
   };
   updateValue = e => {
     const name = e.target.name;
-    this.setState({ [name]: e.target.value });
+    this.setState({ fail: undefined, [name]: e.target.value });
   };
   render() {
     return (
@@ -39,6 +60,11 @@ class Login extends Component {
                 className="input__box password"
                 required
               />
+              {this.state.fail ? (
+                <p className="alert__box">
+                  Invalid Email or Password !! Try Again!
+                </p>
+              ) : null}
 
               <input
                 type="submit"

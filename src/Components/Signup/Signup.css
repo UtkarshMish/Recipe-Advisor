@@ -35,3 +35,7 @@
   transform: scale(1.2);
   transition: all 0.1s;
 }
+.alert__box {
+  color: rgb(240, 40, 13);
+  font-weight: bolder;
+}
