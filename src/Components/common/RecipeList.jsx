@@ -1,9 +1,12 @@
 import React from "react";
 import RecipeCard from "./RecipeCard";
-const RecipeList = () => {
+const RecipeList = props => {
+  const { cuisines } = props;
   return (
     <div className="recipe__row">
-      <RecipeCard />
+      {cuisines.map(cuisine => (
+        <RecipeCard key={cuisine["id"]} cuisine={cuisine} />
+      ))}
     </div>
   );
 };

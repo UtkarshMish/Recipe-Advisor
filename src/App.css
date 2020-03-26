@@ -158,18 +158,30 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 30rem;
+  min-height: auto;
+  width: 18rem;
+  min-width: auto;
 }
 .recipe__title {
   display: flex;
   border-bottom: 0.1rem solid whitesmoke;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-end;
 }
 .recipe__title > h5 {
   font-size: 1.2rem;
 }
 .recipe__content {
-  padding: 8rem 5rem;
+  padding: 1rem 1rem;
+}
+.recipe__image {
+  height: 100%;
+  width: auto;
+}
+.recipe__image > img {
+  max-height: 100%;
+  max-width: 100%;
 }
 /* Pagination */
 .pagination {

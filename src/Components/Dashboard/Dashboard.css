@@ -20,15 +20,15 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   font-size: 1.2rem;
   font-weight: bold;
-  background: linear-gradient(to top, #e9da0f85, #e9c76b57) !important;
-  color: rgb(93, 12, 199);
+  background: linear-gradient(to top, #59ad3f9c, #15e2d18f) !important;
+  color: rgb(100, 4, 145);
   padding: 1rem 2rem !important;
   border-radius: 1.5rem !important;
 }
 .greet__user:hover {
   transform: scale(1.12);
   transition: all 0.4s;
-  box-shadow: 0.2rem 0.2rem !important;
+  box-shadow: 0.1rem 0.2rem !important;
 }
 .dashboard__body {
   padding: 20rem 1rem;

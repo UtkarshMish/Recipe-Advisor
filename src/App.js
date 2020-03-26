@@ -11,10 +11,11 @@ import Browse from "./Components/Browse/Browse";
 import Guide from "./Components/Guide/Guide";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
-import { isLoggedIn } from "./Components/utils/checkLogin";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "./Components/common/Loader";
 toast.configure();
 class App extends Component {
   state = {
@@ -55,9 +56,7 @@ class App extends Component {
           </video>
           <div className="App">
             {error[0] ? <ToastContainer /> : null}
-            <div className="loading__container">
-              <AiOutlineLoading3Quarters className="loader" />
-            </div>
+            <Loader />
           </div>
         </React.Fragment>
       );
@@ -82,7 +81,7 @@ class App extends Component {
                 className=" item"
               />
               <Route
-                path="/browse/:recipe?/:id?"
+                path="/browse/:id?"
                 component={Browse}
                 className=" item"
                 exact

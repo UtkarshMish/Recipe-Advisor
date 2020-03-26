@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
-import { signUp } from "../utils/signup";
-import { setUserApi } from "../utils/storeToken";
+import { signUp } from "../utils/Auth/signup";
+import { setUserApi } from "../utils/Auth/storeToken";
 class Signup extends Component {
   state = {
     users: {

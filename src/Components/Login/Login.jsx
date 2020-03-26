@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import "./Login.css";
-import { checkLogin } from "../utils/login";
-import { setUserApi } from "../utils/storeToken";
+import { checkLogin } from "../utils/Auth/login";
+import { setUserApi } from "../utils/Auth/storeToken";
 
 class Login extends Component {
   state = {
