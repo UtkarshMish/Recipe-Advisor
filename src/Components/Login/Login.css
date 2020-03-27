@@ -6,7 +6,7 @@
   text-align: center;
 }
 .login__box {
-  padding: 5rem 0;
+  padding: 5rem;
   border-radius: 2rem;
   border: 2px solid rgb(85, 85, 153);
   display: flex;
@@ -20,7 +20,7 @@
   );
 
   color: white;
-  width: 50%;
+  width: auto;
 }
 .login__heading {
   font-size: 2rem;
@@ -29,6 +29,9 @@
 .login__title {
   margin: 1rem;
   text-transform: capitalize;
+}
+.login__body {
+  margin: 5%;
 }
 .input__box {
   border-radius: 10rem;
@@ -48,6 +51,7 @@
   outline: none;
 }
 .view__column {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -25,7 +25,7 @@ class Login extends Component {
       return this.setState({ fail: true });
     }
   };
-  UNSAFE_componentWillMount = () => {
+  componentDidMount = () => {
     if (this.state.loggedIn === true || this.props.loggedIn === true) {
       this.props.history.push("/dashboard");
     }
@@ -44,39 +44,41 @@ class Login extends Component {
             <div className="login__heading">Log In with email</div>
             <p>If you are Existing Recipe Advisor user</p>
           </div>
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <div className="view__column">
-              <input
-                placeholder="Email"
-                type="email"
-                name="email"
-                onInput={e => this.updateValue(e)}
-                className="input__box email"
-                required
-              />
+          <div className="login__body">
+            <form onSubmit={e => this.handleSubmit(e)}>
+              <div className="view__column">
+                <input
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  onInput={e => this.updateValue(e)}
+                  className="input__box email"
+                  required
+                />
 
-              <input
-                placeholder="Password"
-                type="password"
-                name="password"
-                onInput={e => this.updateValue(e)}
-                className="input__box password"
-                required
-                autoComplete={"true"}
-              />
-              {this.state.fail ? (
-                <p className="alert__box">
-                  Invalid Email or Password !! Try Again!
-                </p>
-              ) : null}
+                <input
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  onInput={e => this.updateValue(e)}
+                  className="input__box password"
+                  required
+                  autoComplete={"true"}
+                />
+                {this.state.fail ? (
+                  <p className="alert__box">
+                    Invalid Email or Password !! Try Again!
+                  </p>
+                ) : null}
 
-              <input
-                type="submit"
-                className="input__box form__submit"
-                value="Sign In"
-              />
-            </div>
-          </form>
+                <input
+                  type="submit"
+                  className="input__box form__submit"
+                  value="Sign In"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
