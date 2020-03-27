@@ -21,15 +21,14 @@
 }
 /*Properties*/
 .loading__container {
-  height: 100;
-  width: 100;
-  padding: 15%;
+  height: 100vh;
   text-align: center;
 }
 .loader {
-  padding: 10% 30%;
-  font-size: 3rem;
-  color: #4e0eff;
+  padding: 5% 20%;
+  margin: 50% 0;
+  font-size: 8rem;
+  color: #df028a;
   animation: load_ring 2s ease-in-out infinite;
 }
 .App {
@@ -185,8 +184,10 @@
 }
 /* Pagination */
 .pagination {
-  padding: 0 2rem;
-  margin: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+  margin: 5rem 0;
 }
 .menu__pages {
   text-align: center;
