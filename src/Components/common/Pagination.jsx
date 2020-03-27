@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { paginate } from "../utils/Pagination";
 const Pagination = props => {
   const { items, onPageChange, pageSize, currentPage, startValue } = props;
-  const pages = paginate(startValue, items, pageSize);
-  console.log(currentPage);
+  const pages = paginate(startValue, items, pageSize, currentPage);
   return (
     <div className="menu__pages">
       {pages.map(page => {
@@ -22,7 +21,7 @@ const Pagination = props => {
             to={`/browse/${page}`}
             onClick={() => onPageChange(page)}
             style={mystyle}
-            className={page == currentPage ? "active page_no" : "page_no"}
+            className={page === currentPage ? "active page_no" : "page_no"}
           >
             {page}
           </Link>
