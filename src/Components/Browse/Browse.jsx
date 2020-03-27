@@ -15,14 +15,20 @@ class Browse extends Component {
     let { cuisines, pageSize, currentPage, startValue } = this.state;
     currentPage =
       this.props.match.params.id || this.props.match.params > 0
-        ? this.props.match.params.id
+        ? parseInt(this.props.match.params.id)
         : currentPage;
     startValue = currentPage;
     cuisines = await getCuisine(currentPage);
     const size = cuisines.pop();
     pageSize = size["totalSize"];
     if (cuisines.length > 0) {
-      this.setState({ cuisines, isLoading: false, pageSize, startValue });
+      this.setState({
+        cuisines,
+        isLoading: false,
+        pageSize,
+        startValue,
+        currentPage
+      });
     }
   };
   loading = () => [this.setState({ isLoading: true })];
