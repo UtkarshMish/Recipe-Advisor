@@ -11,7 +11,7 @@ export function paginate(startValue = 1, items, pageSize, currentPage) {
     const res = pages.splice(index, 6);
     res.unshift("...");
     res.unshift(1);
-    if (res[res.length - 1] != pageCount - 1) {
+    if (res[res.length - 1] !== pageCount - 1) {
       res.push("..");
       res.push(pageCount - 1);
     }
@@ -20,7 +20,7 @@ export function paginate(startValue = 1, items, pageSize, currentPage) {
   if (pageCount > 10) {
     const res = pages.splice(5);
     pages.push("...");
-    if (pages[0] != 1) {
+    if (pages[0] !== 1) {
       pages.unshift("..");
       pages.unshift(1);
     }

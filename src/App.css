@@ -21,12 +21,15 @@
 }
 /*Properties*/
 .loading__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   height: 100vh;
   text-align: center;
 }
 .loader {
   padding: 5% 20%;
-  margin: 50% 0;
+  margin: 10% 0;
   font-size: 8rem;
   color: #df028a;
   animation: load_ring 2s ease-in-out infinite;
