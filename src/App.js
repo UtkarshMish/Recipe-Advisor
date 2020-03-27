@@ -43,6 +43,7 @@ class App extends Component {
   };
   render() {
     const { loggedIn, isLoading, error } = this.state;
+    console.log(loggedIn);
     if (isLoading)
       return (
         <React.Fragment>

@@ -11,7 +11,7 @@ const Pagination = props => {
           page === currentPage
             ? { backgroundColor: "White", color: "#ff0000" }
             : { color: "#ff0000" };
-        return page === "..." ? (
+        return page === "..." || page === ".." ? (
           <div key={page} className="page_no">
             {page}
           </div>
