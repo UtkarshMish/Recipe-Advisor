@@ -45,7 +45,7 @@
     rgb(37, 35, 35) 10%,
     transparent 60rem
   );
-  backdrop-filter: blur(0.1rem) brightness(2) saturate(10);
+  backdrop-filter: blur(0.1px) brightness(1.2) saturate(1);
 }
 .fullscreen-bg__video {
   z-index: -2;
@@ -143,19 +143,19 @@
   display: flex;
   color: whitesmoke;
   background: radial-gradient(
-          circle at center bottom,
-          #201d3856,
-          transparent 80%
+    circle at center bottom,
+    #201d3856,
+    transparent 80%
   );
   flex-direction: column;
   padding: 0 10%;
 }
-.recipe__rating{
+.recipe__rating {
   font-size: medium;
   color: initial;
   font-weight: bold;
 }
-.recipe__category{
+.recipe__category {
   font-size: medium;
   text-align: center;
   word-break: break-word;
@@ -235,7 +235,7 @@
   font-size: large;
   background-color: #ca064e;
 }
-.recipe__button:hover{
+.recipe__button:hover {
   transform: scale(1.2);
   transition: all 0.3s;
 }
