@@ -13,8 +13,10 @@ const RecipeCard = props => {
           <img src={cuisine["img_link"]} alt={cuisine["name"]} />{" "}
         </div>
         <div className="recipe__category">
-            <h5>Categories:</h5>
-          {cuisine["breadcrumbs"].map((cus,index) => index<2?<p>{cus}</p>:null)}
+          <h5>Categories:</h5>
+          {cuisine["breadcrumbs"].map((cus, index) =>
+            index < 2 ? <p key={index}>{cus}</p> : null
+          )}
         </div>
       </div>
       <Link to={`/browse/recipe/${cuisine["id"]}`} className="recipe__button ">
