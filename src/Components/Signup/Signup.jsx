@@ -80,6 +80,7 @@ class Signup extends Component {
                 onInput={e => this.updateValue(e)}
                 pattern="(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}"
                 title="6 character with an uppercase and a special character"
+                autoComplete={"true"}
                 required
               />
               <p>

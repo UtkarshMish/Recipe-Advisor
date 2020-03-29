@@ -6,17 +6,18 @@ const RecipeCard = props => {
     <div className="recipe__card">
       <div className="recipe__title">
         <h5 className="recipe__name">{cuisine["name"]}</h5>
-        <p className="recipe__rating">{cuisine["ratings"]}</p>
+        <p className="recipe__rating">{cuisine["ratings"] + " Stars"}</p>
       </div>
       <div className="recipe__content">
         <div className="recipe__image">
           <img src={cuisine["img_link"]} alt={cuisine["name"]} />{" "}
         </div>
         <div className="recipe__category">
-          {cuisine["breadcrumbs"].map(cus => cus + " ")}
+            <h5>Categories:</h5>
+          {cuisine["breadcrumbs"].map((cus,index) => index<2?<p>{cus}</p>:null)}
         </div>
       </div>
-      <Link to="/browse/recipe" className="recipe__button ">
+      <Link to={`/browse/recipe/${cuisine["id"]}`} className="recipe__button ">
         Get Recipe !
       </Link>
     </div>

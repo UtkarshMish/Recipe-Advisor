@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RecipeList from "../common/RecipeList";
+import RecipeList from "./RecipeList";
 import Pagination from "../common/Pagination";
 import { getCuisine } from "../utils/Recipe/cuisine";
 import Loader from "../common/Loader";
@@ -14,7 +14,7 @@ class Browse extends Component {
   componentDidMount = async () => {
     let { cuisines, pageSize, currentPage, startValue } = this.state;
     currentPage =
-      this.props.match.params.id || this.props.match.params > 0
+      this.props.match.params.id && this.props.match.params.id > 0
         ? parseInt(this.props.match.params.id)
         : currentPage;
     startValue = currentPage;
@@ -39,15 +39,22 @@ class Browse extends Component {
       startValue = page;
       this.loading();
       cuisines = await getCuisine(currentPage);
-      const size = cuisines.pop();
-      pageSize = size["totalSize"];
-      this.setState({
-        currentPage: currentPage,
-        pageSize,
-        cuisines,
-        isLoading: false,
-        startValue
-      });
+      if(cuisines.length > 0) {
+        const size = cuisines.pop();
+        pageSize = size["totalSize"];
+        return this.setState({
+          currentPage: currentPage,
+          pageSize,
+          cuisines,
+          isLoading: false,
+          startValue
+        });
+      }
+      else{
+        return this.setState({
+          isLoading: true
+        });
+      }
     }
   };
   render() {

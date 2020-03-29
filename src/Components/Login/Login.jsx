@@ -21,7 +21,7 @@ class Login extends Component {
         return this.props.updateUser();
       }
     }
-    if (response.value === "false") {
+    if (response.value === false) {
       return this.setState({ fail: true });
     }
   };

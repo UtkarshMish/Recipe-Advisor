@@ -16,6 +16,7 @@ import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
+import Recipe from "./Components/Browse/Recipe";
 toast.configure();
 class App extends Component {
   state = {
@@ -43,11 +44,11 @@ class App extends Component {
   };
   render() {
     const { loggedIn, isLoading, error } = this.state;
-    console.log(loggedIn);
     if (isLoading)
       return (
         <React.Fragment>
           <video
+            loop
             muted
             autoPlay
             className="fullscreen-bg__video"
@@ -64,6 +65,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <video
+          loop
           muted
           autoPlay
           className="fullscreen-bg__video"
@@ -123,7 +125,11 @@ class App extends Component {
                 className=" item"
                 exact
               />
-              <Route path="/browse/:recipe?/:id/:tab?" className=" item" />
+              <Route
+                path="/browse/recipe/:id/:tab?"
+                className=" item"
+                component={Recipe}
+              />
               <Route path="/" component={Home} className=" item" />
 
               <Route component={Home} />
