@@ -45,7 +45,7 @@
     rgb(37, 35, 35) 10%,
     transparent 60rem
   );
-  backdrop-filter: blur(0.1px) brightness(1.2) saturate(1);
+  backdrop-filter: brightness(1.1) saturate(3);
 }
 .fullscreen-bg__video {
   z-index: -2;
