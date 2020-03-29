@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import Loader from "../common/Loader";
 import { getRecipe } from "../utils/Recipe/cuisine";
+import { GiFireBowl } from "react-icons/gi";
 import "./Recipe.css";
 class Recipe extends Component {
-  state = { cuisine: [], loading: true };
+  state = {
+    cuisine: [],
+    loading: true,
+    liked: false,
+    iconStyle: { color: "inherit" }
+  };
   componentDidMount = async () => {
     let cuisine = this.state;
     const id = parseInt(this.props.match.params.id);
@@ -12,13 +18,21 @@ class Recipe extends Component {
     if (cuisine && cuisine["id"] === id)
       return this.setState({ cuisine, loading: false });
   };
+  onClick = () => {
+    let { liked } = this.state;
+    let { iconStyle } = this.state;
+    liked = !liked;
+    iconStyle = liked ? { color: "#fdcf58 " } : { color: "inherit" };
+    return this.setState({ liked, iconStyle });
+  };
   render() {
-    const { cuisine, loading } = this.state;
+    const { cuisine, loading, iconStyle } = this.state;
     if (loading) return <Loader />;
     return (
       <div className="recipe__container">
         <div className="recipe__head">
           <h1>{cuisine["name"]}</h1>
+          <GiFireBowl style={iconStyle} onClick={this.onClick} />
         </div>
         <div className="recipe__body">
           <div className="recipe__image">

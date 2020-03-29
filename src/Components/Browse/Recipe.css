@@ -5,6 +5,23 @@
   text-align: center;
   border-radius: 2rem;
   margin: 2rem;
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.recipe__head > h1 {
+  margin-right: 5%;
+}
+.recipe__head > svg:hover {
+  transform: scale(1.25);
+}
+.recipe__head > svg:active {
+  transform: scale(1);
+}
+.recipe__head > svg {
+  font-size: 3rem;
+  transition: all 0.2s ease-in-out;
 }
 .recipe__body {
   display: flex;
@@ -22,24 +39,27 @@
 }
 .recipe__ingredients {
   font-size: 1.2rem;
-  margin: 2rem;
+  margin: 2rem auto;
 }
 .ingredients:not(:last-child) {
   margin-bottom: 1rem;
 }
 .recipe__info {
+  display: inherit;
   margin: auto 5rem;
   font-size: medium;
-  display: flex;
   text-align: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .recipe__info > p {
   padding: 1rem;
+  margin: 1rem;
   border: 0.1rem solid salmon;
   border-radius: 2rem;
   border-left: none;
   text-transform: capitalize;
 }
 .recipe__info > p:not(:last-child) {
-  margin: auto 1rem;
+  margin: 1rem;
 }
