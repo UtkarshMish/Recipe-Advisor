@@ -18,6 +18,19 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 toast.configure();
+const VIDEO = (
+  <div className="bg__video">
+    <video
+      loop
+      muted
+      autoPlay
+      className="fullscreen-bg__video"
+      title="./Images/recipe-background.jpeg"
+    >
+      <source src={video} type="video/mp4" />
+    </video>
+  </div>
+);
 class App extends Component {
   state = {
     loggedIn: false,
@@ -47,15 +60,7 @@ class App extends Component {
     if (isLoading)
       return (
         <React.Fragment>
-          <video
-            loop
-            muted
-            autoPlay
-            className="fullscreen-bg__video"
-            title="./Images/recipe-background.jpeg"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
+          {VIDEO}
           <div className="App">
             {error[0] ? <ToastContainer /> : null}
             <Loader />
@@ -64,15 +69,7 @@ class App extends Component {
       );
     return (
       <React.Fragment>
-        <video
-          loop
-          muted
-          autoPlay
-          className="fullscreen-bg__video"
-          title="./Images/recipe-background.jpeg"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
+        {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
           <React.Fragment>
