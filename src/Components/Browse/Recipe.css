@@ -1,29 +1,45 @@
-.recipe__head{
-    background: #64103f;
-    font-size: large;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 2rem;
-    margin: 2rem;
+.recipe__head {
+  background: #64103f;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 2rem;
+  margin: 2rem;
 }
-.recipe__body{
-    display: flex;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
+.recipe__body {
+  display: flex;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.recipe__body > .recipe__image{
-    margin: auto;
+.recipe__body > .recipe__image {
+  margin: auto;
 }
-.recipe__body > .recipe__image > img{
-    border-radius: 2rem;
+.recipe__body > .recipe__image > img {
+  border-radius: 2rem;
 }
-.recipe__ingredients{
-    font-size: 1.2rem;
-    margin: 2rem;
+.recipe__ingredients {
+  font-size: 1.2rem;
+  margin: 2rem;
 }
-.ingredients:not(:last-child){
-    margin-bottom: 1rem;
+.ingredients:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.recipe__info {
+  margin: auto 5rem;
+  font-size: medium;
+  display: flex;
+  text-align: center;
+}
+.recipe__info > p {
+  padding: 1rem;
+  border: 0.1rem solid salmon;
+  border-radius: 2rem;
+  border-left: none;
+  text-transform: capitalize;
+}
+.recipe__info > p:not(:last-child) {
+  margin: auto 1rem;
 }
