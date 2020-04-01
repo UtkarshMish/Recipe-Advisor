@@ -26,7 +26,7 @@
 .recipe__body {
   display: flex;
   text-align: center;
-  margin: auto;
+  margin: auto 5%;
   margin-bottom: 2rem;
   align-items: center;
   flex-wrap: wrap;
@@ -39,7 +39,7 @@
 }
 .recipe__ingredients {
   font-size: 1.2rem;
-  margin: 2rem auto;
+  margin: auto;
 }
 .ingredients:not(:last-child) {
   margin-bottom: 1rem;
