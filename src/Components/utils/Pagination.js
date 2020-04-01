@@ -1,6 +1,6 @@
 export function paginate(startValue = 1, items, pageSize, currentPage) {
   const pages = [];
-  const pageCount = Math.ceil(pageSize / items);
+  const pageCount = Math.ceil(pageSize / items) || 1;
   let value = startValue > Math.ceil(pageCount / 2) ? 1 : startValue;
   startValue = currentPage - 5 < startValue ? 1 : startValue;
   for (let index = value; index < pageCount; index++) {

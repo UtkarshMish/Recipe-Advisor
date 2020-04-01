@@ -145,6 +145,11 @@
 }
 
 /* common */
+.search__list {
+  display: flex;
+  justify-content: center;
+  margin: 0 10%;
+}
 .recipe__container {
   display: flex;
   color: whitesmoke;
