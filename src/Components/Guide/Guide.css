@@ -3,6 +3,11 @@
   text-align: center;
   background: radial-gradient(circle at bottom, #252f3da1, transparent 40%);
 }
+.ingredient__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .input__container {
   display: inherit;
   align-items: center;

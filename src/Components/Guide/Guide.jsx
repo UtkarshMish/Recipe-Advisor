@@ -17,7 +17,7 @@ class Guide extends Component {
     if (isNaN(count[0]) || count.length < 1) {
       count = [1];
     } else {
-      if (count.length < 10) {
+      if (count.length <= 10) {
         count.push(count[count.length - 1] + 1);
       }
     }
@@ -59,29 +59,37 @@ class Guide extends Component {
                   Add the Ingredients to get recommendations !
                 </h3>
               </div>
-              {count.map(num => {
-                if (num > 10) {
-                  return <h2 key={num}>Can't add more !!! </h2>;
-                }
-                return (
-                  <div key={num} className="input__container">
-                    <input
-                      type="text"
-                      className="input__box"
-                      name={`${num}`}
-                      placeholder={`Add Ingredient ${num}`}
-                      onInput={e => this.updateValue(e)}
-                    />
-                    <button
-                      value={num}
-                      className="add__link-button"
-                      onClick={e => this.removeInput(e)}
-                    >
-                      <TiMinus />
-                    </button>
-                  </div>
-                );
-              })}
+              <div className="ingredient__container">
+                {count.map(num => {
+                  if (num > 10) {
+                    return (
+                      <h2 key={num} className="input__box">
+                        Ingredients Limit Exceeded !
+                      </h2>
+                    );
+                  }
+
+                  return (
+                    <div key={num} className="input__container">
+                      <input
+                        type="text"
+                        className="input__box"
+                        name={`${num}`}
+                        placeholder={`Add Ingredient ${num}`}
+                        onInput={e => this.updateValue(e)}
+                      />
+
+                      <button
+                        value={num}
+                        className="add__link-button"
+                        onClick={e => this.removeInput(e)}
+                      >
+                        <TiMinus />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
               <button className="add__link-button" onClick={this.addInput}>
                 <TiPlus />
               </button>
