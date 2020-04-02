@@ -4,6 +4,7 @@ import Pagination from "../common/Pagination";
 import { getCuisine } from "../utils/Recipe/cuisine";
 import Loader from "../common/Loader";
 import { searchCuisine } from "../utils/search";
+import Failed from "../common/Failed";
 class Browse extends Component {
   state = {
     currentPage: 1,
@@ -11,7 +12,8 @@ class Browse extends Component {
     isLoading: true,
     pageSize: 1,
     startValue: 1,
-    searchQuery: ""
+    searchQuery: "",
+    failed: false
   };
   componentDidMount = async () => {
     let { cuisines, pageSize, currentPage, startValue } = this.state;
@@ -23,15 +25,17 @@ class Browse extends Component {
     cuisines = await getCuisine(currentPage);
     const size = cuisines.pop();
     pageSize = size["totalSize"];
-    if (cuisines.length > 0) {
-      this.setState({
+    if (pageSize > 0 && cuisines.length !== 0) {
+      return this.setState({
         cuisines,
         isLoading: false,
         pageSize,
         startValue,
-        currentPage
+        currentPage,
+        failed: false
       });
     }
+    return this.setState({ isLoading: false, failed: true });
   };
   loading = () => [this.setState({ isLoading: true })];
   handlePageChange = async page => {
@@ -59,11 +63,13 @@ class Browse extends Component {
           pageSize,
           cuisines,
           isLoading: false,
-          startValue
+          startValue,
+          failed: false
         });
       } else {
         return this.setState({
-          isLoading: true
+          isLoading: false,
+          failed: true
         });
       }
     }
@@ -77,7 +83,6 @@ class Browse extends Component {
   searchRecipe = async () => {
     let { searchQuery, cuisines, pageSize, startValue } = this.state;
     startValue = 1;
-    this.props.history.push("/browse");
     cuisines = await searchCuisine(searchQuery, startValue);
     const size = cuisines.pop();
     pageSize = size["totalSize"];
@@ -86,8 +91,17 @@ class Browse extends Component {
       isLoading: false,
       pageSize,
       startValue,
-      currentPage: 1
+      currentPage: 1,
+      failed: false
     });
+    if (pageSize === 0) {
+      return this.setState({
+        isLoading: false,
+        startValue,
+        currentPage: 1,
+        failed: true
+      });
+    }
   };
   render() {
     const {
@@ -96,7 +110,8 @@ class Browse extends Component {
       pageSize,
       currentPage,
       startValue,
-      searchQuery
+      searchQuery,
+      failed
     } = this.state;
     if (isLoading) return <Loader />;
     else
@@ -112,20 +127,24 @@ class Browse extends Component {
               placeholder="Search Cuisine!"
             />
           </div>
-          <div className="recipe__container">
-            <div className="recipe__list">
-              <RecipeList cuisines={cuisines} />
+          {failed ? (
+            <Failed />
+          ) : (
+            <div className="recipe__container">
+              <div className="recipe__list">
+                <RecipeList cuisines={cuisines} />
+              </div>
+              <div className="pagination">
+                <Pagination
+                  items={cuisines.length}
+                  onPageChange={this.handlePageChange}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  startValue={startValue}
+                />
+              </div>
             </div>
-            <div className="pagination">
-              <Pagination
-                items={cuisines.length}
-                onPageChange={this.handlePageChange}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                startValue={startValue}
-              />
-            </div>
-          </div>
+          )}
         </React.Fragment>
       );
   }

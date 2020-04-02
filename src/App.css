@@ -250,3 +250,41 @@
   transform: scale(1.2);
   transition: all 0.3s;
 }
+/* FAILED MESSAGES */
+.failed__container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  margin-bottom: 25%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.goback-button {
+  padding: 1.2rem;
+  margin: auto;
+  margin-bottom: 2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: antiquewhite;
+  border-radius: 10%;
+  font-size: 2.5rem;
+  background-color: #0c8b32;
+}
+.failed__body {
+  background: linear-gradient(
+    to right,
+    rgba(220, 20, 60, 0.35),
+    rgba(255, 0, 0, 0.46)
+  );
+  margin: auto;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+.failed__message {
+  font-size: 3rem;
+}
+.failed-icon {
+  color: rosybrown;
+  font-size: 5rem;
+}
