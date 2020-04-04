@@ -41,11 +41,12 @@
   justify-content: flex-end;
 }
 .color-switch > select:nth-child(1) {
-  background-color: black;
+  background-color: inherit;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: whitesmoke;
-  font-size: large;
+  color: deeppink;
+  font-size: 1.2rem;
+  font-weight: 800;
   outline: none;
   padding: 20px;
   border-radius: 20rem;
@@ -79,6 +80,23 @@
   transform: scale(0.8) translate(-15%, -25%);
 }
 /* Header CSS */
+@media only screen and (max-width: 600px) {
+  .menu__items {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  .item-right {
+    margin-top: 1rem;
+    width: auto !important;
+  }
+  .m-right:not(:last-child) {
+    margin: 0 25% !important;
+  }
+  .color-switch {
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+}
 .menu__items {
   margin: 1rem 1rem;
   margin-top: 0;

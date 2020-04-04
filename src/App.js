@@ -59,6 +59,7 @@ class App extends Component {
       showVideo = false;
     } else {
       showVideo = true;
+      defaultColor = "black";
     }
     return await this.setState({ defaultColor, showVideo });
   };
@@ -84,7 +85,12 @@ class App extends Component {
     );
 
     const VIDEO = (
-      <div className="bg__video" style={{ backgroundColor: defaultColor }}>
+      <div
+        className="bg__video"
+        style={{
+          background: `radial-gradient(circle at bottom,${defaultColor} 45%,rgb(37, 35, 35) 100%,transparent 3%)`,
+        }}
+      >
         {showVideo ? (
           <video
             loop
