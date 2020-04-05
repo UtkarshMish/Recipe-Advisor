@@ -44,12 +44,24 @@
   background-color: inherit;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: deeppink;
+  color: rgb(167, 164, 4);
   font-size: 1.2rem;
   font-weight: 800;
   outline: none;
   padding: 20px;
+  border: 0.25rem solid sienna;
+  border-style: outset;
   border-radius: 20rem;
+}
+.color-switch > select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+/* For IE10 */
+.color-switch > select::-ms-expand {
+  display: none;
 }
 .App {
   width: 100%;
@@ -80,24 +92,7 @@
   transform: scale(0.8) translate(-15%, -25%);
 }
 /* Header CSS */
-@media only screen and (max-width: 800px) {
-  .menu__items {
-    flex-direction: column !important;
-    text-align: center;
-  }
-  .item-right {
-    justify-content: center;
-    margin-top: 1rem !important;
-    padding: 0 !important;
-  }
-  .m-right:not(:last-child) {
-    margin: 0 25% !important;
-  }
-  .color-switch {
-    justify-content: center !important;
-    margin: 0 !important;
-  }
-}
+
 .menu__items {
   margin: 1rem 1rem;
   margin-top: 0;
@@ -323,4 +318,28 @@
 .failed-icon {
   color: rosybrown;
   font-size: 5rem;
+}
+
+/*MEDIA for mobiles */
+@media only screen and (max-width: 850px) {
+  .menu__items {
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    margin-top: 0.25rem;
+  }
+  .item-right {
+    justify-content: center;
+    margin: auto;
+    margin-top: 0.25rem;
+    padding: 0;
+    flex-direction: column;
+  }
+  .m-right {
+    margin: 0.25rem;
+  }
+  .color-switch {
+    justify-content: center;
+    margin: 0.5rem;
+  }
 }

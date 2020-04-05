@@ -119,7 +119,7 @@ class App extends Component {
         {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
-          {colorSwitcher}
+
           <React.Fragment>
             <Switch>
               <Route
@@ -182,6 +182,7 @@ class App extends Component {
               <Route component={Home} />
             </Switch>
           </React.Fragment>
+          {colorSwitcher}
           <Footer />
         </div>
       </React.Fragment>
