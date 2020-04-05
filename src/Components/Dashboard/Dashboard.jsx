@@ -12,11 +12,12 @@ class Dashboard extends Component {
       username = localStorage.getItem("user") || username;
       let loggedIn =
         localStorage.getItem("firstLogin") == "false" ? false : true;
-      if (loggedIn) {
+      if (loggedIn && username === "USER") {
+        localStorage.setItem("firstLogin", true);
+      } else {
         localStorage.setItem("firstLogin", false);
       }
-
-      console.log(loggedIn, firstLogin);
+      console.log(loggedIn, username);
       if ((loggedIn || firstLogin) && username !== "USER") {
         toast.success(`Hello ${username}! let's Get you Started !`, {
           position: toast.POSITION.TOP_CENTER,

@@ -1,9 +1,10 @@
+import React from "react";
 import { loggedOut } from "../utils/Auth/checkLogin";
-const Logout = props => {
+import { Redirect } from "react-router-dom";
+const Logout = (props) => {
   loggedOut();
   props.updateUser();
-  props.history.push("/login");
-  return null;
+  return <Redirect to="/login" />;
 };
 
 export default Logout;
