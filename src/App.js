@@ -18,24 +18,21 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 toast.configure();
-const VIDEO = (
-  <div className="bg__video">
-    <video
-      loop
-      muted
-      autoPlay
-      className="fullscreen-bg__video"
-      title="./Images/recipe-background.jpeg"
-    >
-      <source src={video} type="video/mp4" />
-    </video>
-  </div>
-);
+
 class App extends Component {
   state = {
     loggedIn: false,
     isLoading: true,
-    error: []
+    error: [],
+    colorCodes: {
+      "Smoky Video": "true",
+      "Classy Black": "black",
+      "Hotzy Green": "seagreen",
+      "Mother Blue": "midnightblue",
+      "Something Original": "salmon",
+    },
+    defaultColor: "black",
+    showVideo: true,
   };
 
   componentDidMount = async () => {
@@ -45,7 +42,7 @@ class App extends Component {
     if (auth.error) {
       error = String(auth["error"]).split(10);
       toast.error(error[0], {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_CENTER,
       });
       return this.setState({ error, isLoading: false });
     }
@@ -55,8 +52,58 @@ class App extends Component {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
+  handleColorChange = async (e) => {
+    let { defaultColor, showVideo } = this.state;
+    defaultColor = e.target.value;
+    if (defaultColor !== "true") {
+      showVideo = false;
+    } else {
+      showVideo = true;
+      defaultColor = "black";
+    }
+    return await this.setState({ defaultColor, showVideo });
+  };
   render() {
-    const { loggedIn, isLoading, error } = this.state;
+    const {
+      loggedIn,
+      isLoading,
+      error,
+      colorCodes,
+      defaultColor,
+      showVideo,
+    } = this.state;
+    const colorSwitcher = (
+      <div className="color-switch">
+        <select name="color" onChange={(e) => this.handleColorChange(e)}>
+          {Object.keys(colorCodes).map((color) => (
+            <option key={color} value={colorCodes[color]}>
+              {color}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+
+    const VIDEO = (
+      <div
+        className="bg__video"
+        style={{
+          background: `radial-gradient(circle at bottom,${defaultColor} 45%,rgb(37, 35, 35) 100%,transparent 3%)`,
+        }}
+      >
+        {showVideo ? (
+          <video
+            loop
+            muted
+            autoPlay
+            className="fullscreen-bg__video"
+            title="./Images/recipe-background.jpeg"
+          >
+            <source src={video} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
+    );
     if (isLoading)
       return (
         <React.Fragment>
@@ -72,12 +119,15 @@ class App extends Component {
         {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
+          {colorSwitcher}
           <React.Fragment>
             <Switch>
               <Route
                 exact
                 path="/dashboard"
-                component={args => <Dashboard {...args} loggedIn={loggedIn} />}
+                component={(args) => (
+                  <Dashboard {...args} loggedIn={loggedIn} />
+                )}
                 className=" item"
               />
               <Route
@@ -89,7 +139,7 @@ class App extends Component {
 
               <Route
                 path="/logout"
-                component={args => (
+                component={(args) => (
                   <Logout updateUser={this.updateUser} {...args} />
                 )}
                 className=" item"
@@ -99,7 +149,7 @@ class App extends Component {
               <Route path="/guide" component={Guide} className=" item" exact />
               <Route
                 path="/login"
-                component={args => (
+                component={(args) => (
                   <Login
                     updateUser={this.updateUser}
                     loggedIn={loggedIn}
@@ -112,7 +162,7 @@ class App extends Component {
 
               <Route
                 path="/signup"
-                component={args => (
+                component={(args) => (
                   <Signup
                     loggedIn={loggedIn}
                     updateUser={this.updateUser}
