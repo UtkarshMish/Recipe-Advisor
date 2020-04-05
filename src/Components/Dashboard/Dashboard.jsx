@@ -3,25 +3,33 @@ import "./Dashboard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 class Dashboard extends Component {
-  componentDidMount = () => {
+  state = { username: "USER", success: false, firstLogin: false };
+  componentDidMount = async () => {
     if (this.props.loggedIn === false) {
       this.props.history.push("/login");
     } else {
-      let { username } = this.state;
+      let { username, firstLogin } = this.state;
       username = localStorage.getItem("user") || username;
-      if (username !== "USER")
+      let loggedIn =
+        localStorage.getItem("firstLogin") == "false" ? false : true;
+      if (loggedIn) {
+        localStorage.setItem("firstLogin", false);
+      }
+
+      console.log(loggedIn, firstLogin);
+      if ((loggedIn || firstLogin) && username !== "USER") {
         toast.success(`Hello ${username}! let's Get you Started !`, {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2500,
           hideProgressBar: true,
           closeButton: false,
-          className: "greet__user"
+          className: "greet__user",
         });
+      }
 
-      return this.setState({ username });
+      return await this.setState({ username, firstLogin: false });
     }
   };
-  state = { username: "USER", success: false };
 
   render() {
     return (
