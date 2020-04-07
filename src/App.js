@@ -24,15 +24,6 @@ class App extends Component {
     loggedIn: false,
     isLoading: true,
     error: [],
-    colorCodes: {
-      "Smoky Video": "true",
-      "Classy Black": "black",
-      "Hotzy Green": "seagreen",
-      "Mother Blue": "midnightblue",
-      "Something Original": "salmon",
-    },
-    defaultColor: "black",
-    showVideo: true,
   };
 
   componentDidMount = async () => {
@@ -52,56 +43,21 @@ class App extends Component {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
-  handleColorChange = async (e) => {
-    let { defaultColor, showVideo } = this.state;
-    defaultColor = e.target.value;
-    if (defaultColor !== "true") {
-      showVideo = false;
-    } else {
-      showVideo = true;
-      defaultColor = "black";
-    }
-    return await this.setState({ defaultColor, showVideo });
-  };
+
   render() {
-    const {
-      loggedIn,
-      isLoading,
-      error,
-      colorCodes,
-      defaultColor,
-      showVideo,
-    } = this.state;
-    const colorSwitcher = (
-      <div className="color-switch">
-        <select name="color" onChange={(e) => this.handleColorChange(e)}>
-          {Object.keys(colorCodes).map((color) => (
-            <option key={color} value={colorCodes[color]}>
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
+    const { loggedIn, isLoading, error } = this.state;
 
     const VIDEO = (
-      <div
-        className="bg__video"
-        style={{
-          background: `radial-gradient(circle at bottom,${defaultColor} 45%,rgb(37, 35, 35) 100%,transparent 3%)`,
-        }}
-      >
-        {showVideo ? (
-          <video
-            loop
-            muted
-            autoPlay
-            className="fullscreen-bg__video"
-            title="./Images/recipe-background.jpeg"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        ) : null}
+      <div className="bg__video">
+        <video
+          loop
+          muted
+          autoPlay
+          className="fullscreen-bg__video"
+          title="./Images/recipe-background.jpeg"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
       </div>
     );
     if (isLoading)
@@ -182,7 +138,6 @@ class App extends Component {
               <Route component={Home} />
             </Switch>
           </React.Fragment>
-          {colorSwitcher}
           <Footer />
         </div>
       </React.Fragment>
