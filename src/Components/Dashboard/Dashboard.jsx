@@ -11,7 +11,7 @@ class Dashboard extends Component {
       let { username, firstLogin } = this.state;
       username = localStorage.getItem("user") || username;
       let loggedIn =
-        localStorage.getItem("firstLogin") == "false" ? false : true;
+        localStorage.getItem("firstLogin") === "false" ? false : true;
       if (loggedIn && username === "USER") {
         localStorage.setItem("firstLogin", true);
       } else {

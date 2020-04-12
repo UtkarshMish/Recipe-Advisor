@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import "./Guide.css";
 import { TiPlus, TiMinus } from "react-icons/ti";
+import { getPredictions } from "../utils/Recipe/get_predicted";
+import RecipeFinder from "./RecipeFinder";
+import Loader from "../common/Loader";
 class Guide extends Component {
   state = {
     count: [1],
-    ingredients: []
+    ingredients: [],
+    recipe: [],
+    isLoading: false,
+    error: "",
   };
-  updateValue = e => {
+  updateValue = (e) => {
     const name = parseInt(e.target.name);
     const { ingredients } = this.state;
     ingredients[name - 1] = e.target.value;
@@ -23,7 +29,7 @@ class Guide extends Component {
     }
     this.setState({ count });
   };
-  removeInput = e => {
+  removeInput = (e) => {
     let { count } = this.state;
 
     let item = parseInt(e.target.value);
@@ -33,25 +39,40 @@ class Guide extends Component {
     if (isNaN(count[0]) || count.length < 2) {
       count = [1];
     } else {
-      count = count.filter(ele => ele !== item);
+      count = count.filter((ele) => ele !== item);
       for (let index = 0; index < count.length; index++) {
         count[index] = index + 1;
       }
     }
     this.setState({ count });
   };
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    const { ingredients } = this.state;
+    let recipe;
+    await this.setState({ isLoading: true });
+    recipe = await getPredictions(ingredients);
+    if (recipe.value === false) {
+      return await this.setState({ isLoading: false, error: recipe.value });
+    }
+    if (recipe && recipe.length > 0) {
+      await this.setState({ isLoading: false, recipe });
+    }
   };
   render() {
-    const { count } = this.state;
+    const { count, isLoading, recipe } = this.state;
+    if (isLoading && recipe.length === 0) {
+      return <Loader />;
+    } else if (recipe.length > 0) {
+      return <RecipeFinder recipe={recipe} />;
+    }
     return (
       <React.Fragment>
         <div className="guide__container">
           <div className="recipe__guess-form">
             <form
               action=""
-              onSubmit={e => this.handleSubmit(e)}
+              onSubmit={(e) => this.handleSubmit(e)}
               className="input__form"
             >
               <div className="guess-form__header">
@@ -60,7 +81,7 @@ class Guide extends Component {
                 </h3>
               </div>
               <div className="ingredient__container">
-                {count.map(num => {
+                {count.map((num) => {
                   if (num > 10) {
                     return (
                       <h2 key={num} className="input__box">
@@ -76,13 +97,15 @@ class Guide extends Component {
                         className="input__box"
                         name={`${num}`}
                         placeholder={`Add Ingredient ${num}`}
-                        onInput={e => this.updateValue(e)}
+                        onInput={(e) => this.updateValue(e)}
+                        required
                       />
 
                       <button
+                        type="button"
                         value={num}
                         className="add__link-button"
-                        onClick={e => this.removeInput(e)}
+                        onClick={(e) => this.removeInput(e)}
                       >
                         <TiMinus />
                       </button>
@@ -90,7 +113,11 @@ class Guide extends Component {
                   );
                 })}
               </div>
-              <button className="add__link-button" onClick={this.addInput}>
+              <button
+                type="button"
+                className="add__link-button"
+                onClick={this.addInput}
+              >
                 <TiPlus />
               </button>
               <div className="submit__container">
