@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import { getPredictions } from "../utils/Recipe/get_predicted";
 import Loader from "../common/Loader";
@@ -54,16 +55,12 @@ class RecipeFinder extends Component {
                 </div>
               </div>
               <div className="recipe__info">
-                <p>{"Serving Count :" + cuisine["serving_count"]}</p>
-                {cuisine["nutrition"].map((data) => (
-                  <p key={Object.keys(data)}>
-                    {Object.keys(data) +
-                      " : " +
-                      data[Object.keys(data)].value +
-                      " " +
-                      data[Object.keys(data)].unit}
-                  </p>
-                ))}
+                <Link
+                  className="recipe__button"
+                  to={`/browse/recipe/${cuisine["id"]}`}
+                >
+                  Get Info!
+                </Link>
               </div>
             </div>
           ))}

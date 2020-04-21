@@ -43,7 +43,7 @@ class Recipe extends Component {
             <img src={cuisine["img_link"]} alt={cuisine["name"]} />
           </div>
           <div className="recipe__ingredients">
-            <h2>Ingredients in Recipe:</h2>
+            <h2 className="recipe__heading">Ingredients in Recipe:</h2>
             <ul>
               {cuisine["ingredients"] &&
                 cuisine["ingredients"].map((ingredient) => (
@@ -54,6 +54,7 @@ class Recipe extends Component {
             </ul>
           </div>
         </div>
+        <h2 className="recipe__heading">Nutrition Values</h2>
         <div className="recipe__info">
           <p>{"Serving Count :" + cuisine["serving_count"]}</p>
           {cuisine["nutrition"].map((data) => (
@@ -65,6 +66,15 @@ class Recipe extends Component {
                 data[Object.keys(data)].unit}
             </p>
           ))}
+        </div>
+        <div className="recipe__instructions">
+          <h2 className="recipe__heading">Instructions</h2>
+          <ol>
+            {cuisine["description"] &&
+              cuisine["description"].map((steps) => (
+                <li key={steps["phrase"]}>{steps["phrase"]}</li>
+              ))}
+          </ol>
         </div>
       </div>
     );
