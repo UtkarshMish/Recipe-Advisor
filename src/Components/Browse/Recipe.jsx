@@ -10,7 +10,7 @@ class Recipe extends Component {
     loading: true,
     liked: false,
     iconStyle: { color: "inherit" },
-    failed: false
+    failed: false,
   };
   componentDidMount = async () => {
     let cuisine = this.state;
@@ -31,7 +31,7 @@ class Recipe extends Component {
   render() {
     const { cuisine, loading, iconStyle, failed } = this.state;
     if (loading) return <Loader />;
-    if (failed) return <Failed />;
+    if (failed) return <Failed backArea="/browse" />;
     return (
       <div className="recipe__container">
         <div className="recipe__head">
@@ -46,7 +46,7 @@ class Recipe extends Component {
             <h2>Ingredients in Recipe:</h2>
             <ul>
               {cuisine["ingredients"] &&
-                cuisine["ingredients"].map(ingredient => (
+                cuisine["ingredients"].map((ingredient) => (
                   <li key={ingredient.name} className="ingredients">
                     {ingredient.phrase}
                   </li>
@@ -56,7 +56,7 @@ class Recipe extends Component {
         </div>
         <div className="recipe__info">
           <p>{"Serving Count :" + cuisine["serving_count"]}</p>
-          {cuisine["nutrition"].map(data => (
+          {cuisine["nutrition"].map((data) => (
             <p key={Object.keys(data)[0]}>
               {Object.keys(data) +
                 " : " +

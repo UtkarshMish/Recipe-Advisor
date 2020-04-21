@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import "./Guide.css";
 import { TiPlus, TiMinus } from "react-icons/ti";
-import { getPredictions } from "../utils/Recipe/get_predicted";
-import RecipeFinder from "./RecipeFinder";
-import Loader from "../common/Loader";
+
 class Guide extends Component {
   state = {
     count: [1],
     ingredients: [],
-    recipe: [],
-    isLoading: false,
-    error: "",
   };
   updateValue = (e) => {
     const name = parseInt(e.target.name);
@@ -49,21 +44,12 @@ class Guide extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { ingredients } = this.state;
-    let recipe;
-    await this.setState({ isLoading: true });
-    recipe = await getPredictions(ingredients);
-    if (recipe.value === false) {
-      return await this.setState({ isLoading: false, error: recipe.value });
-    }
-    if (recipe && recipe.length > 0) {
-      return this.props.history.push(`/guide/results/q=${ingredients}`, recipe);
+    if (ingredients.length > 0) {
+      return this.props.history.push(`/guide/results/q=${ingredients}`);
     }
   };
   render() {
-    const { count, isLoading, recipe } = this.state;
-    if (isLoading && recipe.length === 0) {
-      return <Loader />;
-    }
+    const { count } = this.state;
     return (
       <React.Fragment>
         <div className="guide__container">

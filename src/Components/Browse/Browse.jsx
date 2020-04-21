@@ -13,7 +13,7 @@ class Browse extends Component {
     pageSize: 1,
     startValue: 1,
     searchQuery: "",
-    failed: false
+    failed: false,
   };
   componentDidMount = async () => {
     let { cuisines, pageSize, currentPage, startValue } = this.state;
@@ -32,19 +32,19 @@ class Browse extends Component {
         pageSize,
         startValue,
         currentPage,
-        failed: false
+        failed: false,
       });
     }
     return this.setState({ isLoading: false, failed: true });
   };
   loading = () => [this.setState({ isLoading: true })];
-  handlePageChange = async page => {
+  handlePageChange = async (page) => {
     let {
       currentPage,
       cuisines,
       pageSize,
       startValue,
-      searchQuery
+      searchQuery,
     } = this.state;
     if (page > 0) {
       currentPage = page;
@@ -64,20 +64,25 @@ class Browse extends Component {
           cuisines,
           isLoading: false,
           startValue,
-          failed: false
+          failed: false,
         });
       } else {
         return this.setState({
           isLoading: false,
-          failed: true
+          failed: true,
         });
       }
     }
   };
-  handleSearch = async e => {
+  handleSearch = async (e) => {
     let { searchQuery } = this.state;
     searchQuery = e.target.value;
     await this.setState({ searchQuery });
+    return await this.searchRecipe();
+  };
+  handleFailClick = async () => {
+    await this.setState({ searchQuery: "" });
+
     return await this.searchRecipe();
   };
   searchRecipe = async () => {
@@ -92,14 +97,14 @@ class Browse extends Component {
       pageSize,
       startValue,
       currentPage: 1,
-      failed: false
+      failed: false,
     });
     if (pageSize === 0) {
       return this.setState({
         isLoading: false,
         startValue,
         currentPage: 1,
-        failed: true
+        failed: true,
       });
     }
   };
@@ -111,7 +116,7 @@ class Browse extends Component {
       currentPage,
       startValue,
       searchQuery,
-      failed
+      failed,
     } = this.state;
     if (isLoading) return <Loader />;
     else
@@ -120,7 +125,7 @@ class Browse extends Component {
           <div className="search__list">
             <input
               type="text"
-              onChange={e => this.handleSearch(e)}
+              onChange={(e) => this.handleSearch(e)}
               className="input__box"
               name="search"
               value={searchQuery}
@@ -128,7 +133,7 @@ class Browse extends Component {
             />
           </div>
           {failed ? (
-            <Failed />
+            <Failed backArea="/browse" handleClick={this.handleFailClick} />
           ) : (
             <div className="recipe__container">
               <div className="recipe__list">
