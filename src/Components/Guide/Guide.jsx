@@ -56,15 +56,13 @@ class Guide extends Component {
       return await this.setState({ isLoading: false, error: recipe.value });
     }
     if (recipe && recipe.length > 0) {
-      await this.setState({ isLoading: false, recipe });
+      return this.props.history.push(`/guide/results/q=${ingredients}`, recipe);
     }
   };
   render() {
     const { count, isLoading, recipe } = this.state;
     if (isLoading && recipe.length === 0) {
       return <Loader />;
-    } else if (recipe.length > 0) {
-      return <RecipeFinder recipe={recipe} />;
     }
     return (
       <React.Fragment>

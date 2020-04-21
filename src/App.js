@@ -9,6 +9,7 @@ import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import Browse from "./Components/Browse/Browse";
 import Guide from "./Components/Guide/Guide";
+import RecipeFinder from "./Components/Guide/RecipeFinder";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
 import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
@@ -101,8 +102,14 @@ class App extends Component {
                 className=" item"
                 exact
               />
+              <Route
+                path="/guide/results/q=:query?"
+                component={RecipeFinder}
+                className=" item"
+                exact
+              />
 
-              <Route path="/guide" component={Guide} className=" item" exact />
+              <Route path="/guide" component={Guide} className=" item" />
               <Route
                 path="/login"
                 component={(args) => (
