@@ -329,6 +329,28 @@ body {
   color: rosybrown;
   font-size: 5rem;
 }
+.ingredients {
+  text-align: left;
+  font-family: "Google Sans", "Comic Sans MS", cursive, "Zapf Chancery";
+}
+.item-checked {
+  list-style: none;
+}
+.item-checked::before {
+  content: "✔ ";
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: #0c8b32;
+}
+.not-checked {
+  list-style: none;
+}
+.not-checked::before {
+  content: "❌ ";
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: #ca064e;
+}
 
 /*MEDIA for mobiles */
 @media only screen and (max-width: 850px) {

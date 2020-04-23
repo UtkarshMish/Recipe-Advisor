@@ -57,15 +57,17 @@ class Recipe extends Component {
         <h2 className="recipe__heading">Nutrition Values</h2>
         <div className="recipe__info">
           <p>{"Serving Count :" + cuisine["serving_count"]}</p>
-          {cuisine["nutrition"].map((data) => (
-            <p key={Object.keys(data)[0]}>
-              {Object.keys(data) +
-                " : " +
-                data[Object.keys(data)].value +
-                " " +
-                data[Object.keys(data)].unit}
-            </p>
-          ))}
+          {cuisine["nutrition"].map((data) =>
+            data[Object.keys(data)].value !== 0 ? (
+              <p key={Object.keys(data)[0]}>
+                {Object.keys(data) +
+                  " : " +
+                  data[Object.keys(data)].value +
+                  " " +
+                  data[Object.keys(data)].unit}
+              </p>
+            ) : null
+          )}
         </div>
         <div className="recipe__instructions">
           <h2 className="recipe__heading">Instructions</h2>

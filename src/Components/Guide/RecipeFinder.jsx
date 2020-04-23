@@ -4,7 +4,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { getPredictions } from "../utils/Recipe/get_predicted";
 import Loader from "../common/Loader";
 class RecipeFinder extends Component {
-  state = { recipe: [], isLoading: true };
+  state = { recipe: [], isLoading: true, ingredients: [] };
   componentDidMount = async () => {
     const { location, match, history } = this.props;
     let recipe = location.state;
@@ -14,7 +14,7 @@ class RecipeFinder extends Component {
     } else {
       await history.push("/guide");
     }
-    return this.setState({ recipe, isLoading: false });
+    return this.setState({ recipe, ingredients, isLoading: false });
   };
   render() {
     const { recipe, isLoading } = this.state;
@@ -46,7 +46,15 @@ class RecipeFinder extends Component {
                       cuisine["ingredients"].map((ingredient, index) => (
                         <li
                           key={ingredient.name + index}
-                          className="ingredients"
+                          className={
+                            this.state.ingredients
+                              .map((ing) =>
+                                String(ingredient.phrase).includes(ing)
+                              )
+                              .some((item) => item)
+                              ? "ingredients item-checked"
+                              : "ingredients not-checked"
+                          }
                         >
                           {ingredient.phrase}
                         </li>
