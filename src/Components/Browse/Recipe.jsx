@@ -19,7 +19,7 @@ class Recipe extends Component {
     const id = parseInt(this.props.match.params.id);
     cuisine = await getRecipe(id);
     const liking = await updateLikings();
-    if (liking["liked_recipe"].find((elm) => elm === parseInt(id)))
+    if (liking && liking["liked_recipe"].find((elm) => elm === parseInt(id)))
       liked = true;
     if (cuisine && cuisine["id"] === id)
       return this.setState({ cuisine, loading: false, liked });
