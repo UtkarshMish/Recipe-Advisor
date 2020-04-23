@@ -49,7 +49,9 @@ class RecipeFinder extends Component {
                           className={
                             this.state.ingredients
                               .map((ing) =>
-                                String(ingredient.phrase).includes(ing)
+                                String(ingredient.phrase).includes(
+                                  String(ing).toLowerCase()
+                                )
                               )
                               .some((item) => item)
                               ? "ingredients item-checked"

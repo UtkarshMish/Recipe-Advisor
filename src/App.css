@@ -331,7 +331,8 @@ body {
 }
 .ingredients {
   text-align: left;
-  font-family: "Google Sans", "Comic Sans MS", cursive, "Zapf Chancery";
+  font-family: "Open Sans", "Comic Sans MS", "Zapf Chancery", "Proxima Nova",
+    "Montserrat", cursive;
 }
 .item-checked {
   list-style: none;

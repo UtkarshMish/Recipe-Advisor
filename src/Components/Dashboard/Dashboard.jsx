@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 class Dashboard extends Component {
   state = { username: "USER", success: false, firstLogin: false };
   componentDidMount = async () => {
-    if (this.props.loggedIn === false) {
+    if ((await this.props.loggedIn) === false) {
       this.props.history.push("/login");
     } else {
       let { username, firstLogin } = this.state;
@@ -19,7 +19,7 @@ class Dashboard extends Component {
       }
       if ((loggedIn || firstLogin) && username !== "USER") {
         toast.success(`Hello ${username}! let's Get you Started !`, {
-          position: toast.POSITION.TOP_CENTER,
+          position: toast.POSITION.TOP_RIGHT,
           autoClose: 2500,
           hideProgressBar: true,
           closeButton: false,

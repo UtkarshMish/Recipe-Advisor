@@ -20,9 +20,8 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   font-size: 1.2rem;
   font-weight: bold;
-  background: linear-gradient(to top, #59ad3f9c, #15e2d18f) !important;
-  color: rgb(100, 4, 145);
-  padding: 1rem 2rem !important;
+  background-color: linear-gradient(to top, #59ad3f9c, #15e2d18f);
+  color: rgb(119, 6, 172);
   border-radius: 1.5rem !important;
 }
 .greet__user:hover {
