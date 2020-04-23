@@ -17,7 +17,6 @@ class Dashboard extends Component {
       } else {
         localStorage.setItem("firstLogin", false);
       }
-      console.log(loggedIn, username);
       if ((loggedIn || firstLogin) && username !== "USER") {
         toast.success(`Hello ${username}! let's Get you Started !`, {
           position: toast.POSITION.TOP_CENTER,
