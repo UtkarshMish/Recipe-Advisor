@@ -36,8 +36,8 @@ class Signup extends Component {
     if (response.value === "exist") {
       return this.setState({ exist: true });
     } else if (await setUserApi(response.username, response.token)) {
-      this.props.history.push("/dashboard");
-      return this.props.updateUser();
+      await this.props.updateUser();
+      return this.props.history.push("/dashboard");
     }
   };
   render() {
