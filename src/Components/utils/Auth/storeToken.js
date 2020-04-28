@@ -14,7 +14,10 @@ export const checkAPI = async (user, token) => {
   try {
     const user = Boolean(sessionStorage.getItem("user")) || false;
     const token = user ? sessionStorage.getItem("token") : false;
-    let response = await axios.post("/api/verify-token", { user, token });
+    let response = await axios.post(process.env.REACT_APP_VERIFY_USER, {
+      user,
+      token,
+    });
     return response.data.value;
   } catch (e) {
     return { error: e };
