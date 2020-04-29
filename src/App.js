@@ -18,6 +18,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
+import { updateLikings } from "./Components/utils/Recipe/user_likings";
+import { getRecipe } from "./Components/utils/Recipe/cuisine";
 toast.configure();
 
 class App extends Component {
@@ -25,11 +27,13 @@ class App extends Component {
     loggedIn: false,
     isLoading: true,
     error: [],
+    liked: [],
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const auth = await isLoggedIn();
-    let error = this.state;
+    const recipe_data = [];
+    let { error, liked } = this.state;
 
     if (auth.error) {
       error = String(auth["error"]).split(10);
@@ -38,15 +42,26 @@ class App extends Component {
       });
       return this.setState({ error, isLoading: false });
     }
-    return this.setState({ loggedIn: auth, isLoading: false });
-  };
+    if (auth === true) {
+      liked = await updateLikings();
+      liked = liked["liked_recipe"];
+      for (const index of liked) {
+        recipe_data.push(await getRecipe(index));
+      }
+    }
+    return this.setState({
+      loggedIn: auth,
+      isLoading: false,
+      liked: recipe_data,
+    });
+  }
   updateUser = async () => {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
 
   render() {
-    const { loggedIn, isLoading, error } = this.state;
+    const { loggedIn, isLoading, error, liked } = this.state;
 
     const VIDEO = (
       <div className="bg__video">
@@ -83,7 +98,7 @@ class App extends Component {
                 exact
                 path="/dashboard"
                 component={(args) => (
-                  <Dashboard {...args} loggedIn={loggedIn} />
+                  <Dashboard {...args} loggedIn={loggedIn} liked={liked} />
                 )}
                 className=" item"
               />
