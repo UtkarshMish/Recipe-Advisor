@@ -27,13 +27,11 @@ class App extends Component {
     loggedIn: false,
     isLoading: true,
     error: [],
-    liked: [],
   };
 
   async componentDidMount() {
     const auth = await isLoggedIn();
-    const recipe_data = [];
-    let { error, liked } = this.state;
+    let { error } = this.state;
 
     if (auth.error) {
       error = String(auth["error"]).split(10);
@@ -42,26 +40,28 @@ class App extends Component {
       });
       return this.setState({ error, isLoading: false });
     }
-    if (auth === true) {
-      liked = await updateLikings();
-      liked = liked["liked_recipe"];
-      for (const index of liked) {
-        recipe_data.push(await getRecipe(index));
-      }
-    }
+
     return this.setState({
       loggedIn: auth,
       isLoading: false,
-      liked: recipe_data,
     });
   }
   updateUser = async () => {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
+  updateLikes = async () => {
+    const recipe_data = [];
+    let liked = await updateLikings();
+    liked = liked["liked_recipe"];
+    for (const index of liked) {
+      recipe_data.push(await getRecipe(index));
+    }
+    return recipe_data;
+  };
 
   render() {
-    const { loggedIn, isLoading, error, liked } = this.state;
+    const { loggedIn, isLoading, error } = this.state;
 
     const VIDEO = (
       <div className="bg__video">
@@ -98,7 +98,11 @@ class App extends Component {
                 exact
                 path="/dashboard"
                 component={(args) => (
-                  <Dashboard {...args} loggedIn={loggedIn} liked={liked} />
+                  <Dashboard
+                    {...args}
+                    loggedIn={loggedIn}
+                    liked={this.updateLikes}
+                  />
                 )}
                 className=" item"
               />

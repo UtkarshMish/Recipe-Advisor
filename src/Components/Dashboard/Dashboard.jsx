@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import Loader from "../common/Loader";
 class Dashboard extends Component {
   state = { username: "USER", success: false, firstLogin: false, liked: [] };
   async componentDidMount() {
@@ -28,7 +29,7 @@ class Dashboard extends Component {
         });
       }
       let { liked } = this.state;
-      liked = this.props.liked;
+      if (username !== "USER") liked = await this.props.liked();
 
       return this.setState({ username, firstLogin: false, liked });
     }
@@ -49,7 +50,7 @@ class Dashboard extends Component {
             </div>
             <div className="dashboard__body liked">
               {liked.map((recipe) => (
-                <div key={recipe.id} className="recipe__list">
+                <div key={recipe.id} className="recipe__liked-list">
                   <Link
                     to={`/browse/recipe/${recipe.id}`}
                     className="recipe__button"
@@ -65,7 +66,9 @@ class Dashboard extends Component {
               ))}
             </div>
           </React.Fragment>
-        ) : null}
+        ) : (
+          <Loader />
+        )}
       </div>
     );
   }
