@@ -3,9 +3,8 @@ import "./Dashboard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import Loader from "../common/Loader";
 class Dashboard extends Component {
-  state = { username: "USER", success: false, firstLogin: false, liked: [] };
+  state = { username: undefined, success: false, firstLogin: false, liked: [] };
   async componentDidMount() {
     if ((await this.props.loggedIn) === false) {
       return this.props.history.push("/login");
@@ -14,12 +13,12 @@ class Dashboard extends Component {
       username = localStorage.getItem("user") || username;
       let loggedIn =
         localStorage.getItem("firstLogin") === "false" ? false : true;
-      if (loggedIn && username === "USER") {
+      if (loggedIn && username === undefined) {
         localStorage.setItem("firstLogin", true);
       } else {
         localStorage.setItem("firstLogin", false);
       }
-      if ((loggedIn || firstLogin) && username !== "USER") {
+      if ((loggedIn || firstLogin) && username !== undefined) {
         toast.success(`Hello ${username}! let's Get you Started !`, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2500,
@@ -29,7 +28,7 @@ class Dashboard extends Component {
         });
       }
       let { liked } = this.state;
-      if (username !== "USER") liked = await this.props.liked();
+      if (username !== undefined) liked = await this.props.liked();
 
       return this.setState({ username, firstLogin: false, liked });
     }
@@ -46,7 +45,7 @@ class Dashboard extends Component {
         {liked && liked.length > 0 ? (
           <React.Fragment>
             <div className="dashboard__heading liked">
-              <h2>Recipe liked based on your choices!</h2>
+              <h2>Recipe liked based on your past history!</h2>
             </div>
             <div className="dashboard__body liked">
               {liked.map((recipe) => (
@@ -66,9 +65,7 @@ class Dashboard extends Component {
               ))}
             </div>
           </React.Fragment>
-        ) : (
-          <Loader />
-        )}
+        ) : null}
       </div>
     );
   }
