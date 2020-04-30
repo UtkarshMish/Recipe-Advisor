@@ -55,7 +55,7 @@ class Browse extends Component {
       } else {
         cuisines = await getCuisine(currentPage);
       }
-      if (cuisines.length > 0 && cuisines.totalSize != null) {
+      if (cuisines.length > 0 && cuisines.pop().totalSize != null) {
         const size = cuisines.pop();
         pageSize = size["totalSize"];
         return this.setState({
