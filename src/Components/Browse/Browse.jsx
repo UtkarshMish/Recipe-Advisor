@@ -15,7 +15,7 @@ class Browse extends Component {
     searchQuery: "",
     failed: false,
   };
-  componentDidMount = async () => {
+  async componentDidMount() {
     let { cuisines, pageSize, currentPage, startValue } = this.state;
     currentPage =
       this.props.match.params.id && this.props.match.params.id > 0
@@ -36,7 +36,7 @@ class Browse extends Component {
       });
     }
     return this.setState({ isLoading: false, failed: true });
-  };
+  }
   loading = () => [this.setState({ isLoading: true })];
   handlePageChange = async (page) => {
     let {
@@ -55,9 +55,12 @@ class Browse extends Component {
       } else {
         cuisines = await getCuisine(currentPage);
       }
-      if (cuisines.length > 0 && cuisines.pop().totalSize != null) {
+      if (
+        cuisines.length > 0 &&
+        cuisines[cuisines.length - 1].totalSize != null
+      ) {
         const size = cuisines.pop();
-        pageSize = size["totalSize"];
+        pageSize = parseInt(size["totalSize"]);
         return this.setState({
           currentPage: currentPage,
           pageSize,
