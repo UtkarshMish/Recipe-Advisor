@@ -288,8 +288,8 @@ body {
   background-color: #ca064e;
 }
 .recipe__button:hover {
-  transform: scale(1.2);
-  transition: all 0.3s;
+  transform: scale(1.1);
+  transition: all 0.2s;
 }
 /* FAILED MESSAGES */
 .failed__container {
@@ -331,8 +331,8 @@ body {
 }
 .ingredients {
   text-align: left;
-  font-family: "Open Sans", "Comic Sans MS", "Zapf Chancery", "Proxima Nova",
-    "Montserrat", cursive;
+  font-family: "Open Sans", "Comic Sans MS", "Zapf Chancery", Helvetica, Roboto,
+    "Proxima Nova", "Sans-Serif";
 }
 .item-checked {
   list-style: none;
