@@ -37,14 +37,13 @@
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
-  margin: auto;
-  width: 92vw;
+  max-width: 92vw;
 }
 @media only screen and (min-width: 600px) {
   div.dashboard__body.liked {
     flex-direction: column;
     height: 92vw;
-    width: auto !important;
+    margin: auto 0;
     transform: rotate(-90deg) translateY(-65%);
     transform-origin: right top;
   }
