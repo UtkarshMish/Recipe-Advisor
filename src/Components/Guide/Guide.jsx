@@ -29,6 +29,9 @@ class Guide extends Component {
     if (isNaN(item)) {
       item = parseInt(e.currentTarget.name);
     }
+    if (item === 0 && ingredients.length < 2) {
+      return this.setState({ ingredients: [""] });
+    }
     ingredients = ingredients.filter((ele, i) => (i !== item ? ele : null));
     return this.setState({ ingredients });
   };

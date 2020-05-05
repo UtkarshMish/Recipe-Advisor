@@ -92,19 +92,10 @@ class Browse extends Component {
   searchRecipe = async () => {
     let { searchQuery, cuisines, pageSize, startValue } = this.state;
     startValue = 1;
-    await this.setState({ isSearching: true });
+    this.setState({ isSearching: true });
     cuisines = await searchCuisine(searchQuery, startValue);
     const size = cuisines.pop();
     pageSize = size["totalSize"];
-    await this.setState({
-      cuisines,
-      isLoading: false,
-      pageSize,
-      startValue,
-      currentPage: 1,
-      failed: false,
-      isSearching: false,
-    });
     if (pageSize === 0) {
       return this.setState({
         isLoading: false,
@@ -114,6 +105,15 @@ class Browse extends Component {
         isSearching: false,
       });
     }
+    return this.setState({
+      cuisines,
+      isLoading: false,
+      pageSize,
+      startValue,
+      currentPage: 1,
+      failed: false,
+      isSearching: false,
+    });
   };
   render() {
     const {
@@ -157,7 +157,7 @@ class Browse extends Component {
                   </div>
                   <div className="pagination">
                     <Pagination
-                      items={cuisines.length}
+                      items={6}
                       onPageChange={this.handlePageChange}
                       pageSize={pageSize}
                       currentPage={currentPage}

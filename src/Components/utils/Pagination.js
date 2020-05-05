@@ -2,6 +2,7 @@ export function paginate(startValue = 1, items, pageSize, currentPage) {
   const pages = [];
   const pageCount = Math.ceil(pageSize / items) || 1;
   let value = 1;
+  console.log(pageSize);
   if (pageCount > 10) {
     value = startValue > Math.ceil(pageCount / 2) ? 1 : startValue;
 
@@ -15,9 +16,9 @@ export function paginate(startValue = 1, items, pageSize, currentPage) {
     const res = pages.splice(index, 6);
     res.unshift("...");
     res.unshift(1);
-    if (res[res.length - 1] !== pageCount - 1) {
+    if (res[res.length - 1] !== pageCount) {
       res.push("..");
-      res.push(pageCount - 1);
+      res.push(pageCount);
     }
     return res;
   }
