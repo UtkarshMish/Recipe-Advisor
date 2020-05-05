@@ -4,42 +4,34 @@ import { TiPlus, TiMinus } from "react-icons/ti";
 
 class Guide extends Component {
   state = {
-    count: [1],
-    ingredients: [],
+    ingredients: [""],
   };
-  updateValue = (e) => {
+  updateValue = async (e) => {
     const name = parseInt(e.target.name);
     const { ingredients } = this.state;
-    ingredients[name - 1] = e.target.value;
-    this.setState({ ingredients });
+    ingredients[name] = e.target.value;
+    return this.setState({ ingredients });
   };
   addInput = () => {
-    let { count } = this.state;
-    if (isNaN(count[0]) || count.length < 1) {
-      count = [1];
+    let { ingredients } = this.state;
+    if (ingredients.length < 1) {
+      ingredients = [""];
     } else {
-      if (count.length <= 10) {
-        count.push(count[count.length - 1] + 1);
+      if (ingredients.length <= 10) {
+        ingredients.push("");
       }
     }
-    this.setState({ count });
+    this.setState({ ingredients });
   };
   removeInput = (e) => {
-    let { count } = this.state;
-
-    let item = parseInt(e.target.value);
+    let { ingredients } = this.state;
+    let item = parseInt(e.target.name);
     if (isNaN(item)) {
-      item = parseInt(e.currentTarget.value);
-    }
-    if (isNaN(count[0]) || count.length < 2) {
-      count = [1];
+      ingredients = [""];
     } else {
-      count = count.filter((ele) => ele !== item);
-      for (let index = 0; index < count.length; index++) {
-        count[index] = index + 1;
-      }
+      ingredients = ingredients.filter((ele, i) => (i !== item ? ele : null));
     }
-    this.setState({ count });
+    return this.setState({ ingredients });
   };
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +41,7 @@ class Guide extends Component {
     }
   };
   render() {
-    const { count } = this.state;
+    const { ingredients } = this.state;
     return (
       <React.Fragment>
         <div className="guide__container">
@@ -65,7 +57,7 @@ class Guide extends Component {
                 </h3>
               </div>
               <div className="ingredient__container">
-                {count.map((num) => {
+                {ingredients.map((value, num) => {
                   if (num > 10) {
                     return (
                       <h2 key={num} className="input__box">
@@ -77,17 +69,19 @@ class Guide extends Component {
                   return (
                     <div key={num} className="input__container">
                       <input
+                        key={num}
                         type="text"
                         className="input__box"
-                        name={`${num}`}
-                        placeholder={`Add Ingredient ${num}`}
-                        onInput={(e) => this.updateValue(e)}
+                        name={num}
+                        placeholder={`Add Ingredient ${num + 1}`}
+                        onChange={(e) => this.updateValue(e)}
+                        value={value}
                         required
                       />
 
                       <button
                         type="button"
-                        value={num}
+                        name={num}
                         className="add__link-button"
                         onClick={(e) => this.removeInput(e)}
                       >
