@@ -3,6 +3,7 @@ import "./Dashboard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import Loader from "../common/Loader";
 class Dashboard extends Component {
   state = { username: undefined, success: false, firstLogin: false, liked: [] };
   async componentDidMount() {
@@ -35,7 +36,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { liked } = this.state;
+    const { username, liked } = this.state;
+    if (!Boolean(username)) return <Loader />;
     return (
       <div className="dashboard__container">
         <div className="dashboard__heading">
@@ -47,22 +49,24 @@ class Dashboard extends Component {
             <div className="dashboard__heading liked">
               <h2>Recipe liked based on your past history!</h2>
             </div>
-            <div className="dashboard__body liked">
-              {liked.map((recipe) => (
-                <div key={recipe.id} className="recipe__liked-list">
-                  <Link
-                    to={`/browse/recipe/${recipe.id}`}
-                    className="recipe__button"
-                  >
-                    {recipe.name}
-                  </Link>
-                  <img
-                    className="recipe_image"
-                    src={recipe.img_link}
-                    alt={recipe.name}
-                  />
-                </div>
-              ))}
+            <div className="dashboard__body--wrapper">
+              <div className="dashboard__body liked">
+                {liked.map((recipe) => (
+                  <div key={recipe.id} className="recipe__liked-list">
+                    <Link
+                      to={`/browse/recipe/${recipe.id}`}
+                      className="recipe__button"
+                    >
+                      {recipe.name}
+                    </Link>
+                    <img
+                      className="recipe_image"
+                      src={recipe.img_link}
+                      alt={recipe.name}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </React.Fragment>
         ) : null}

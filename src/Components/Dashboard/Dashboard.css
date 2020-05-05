@@ -27,7 +27,6 @@
 .greet__user:hover {
   transform: scale(1.12);
   transition: all 0.4s;
-  box-shadow: 0.1rem 0.2rem !important;
 }
 
 .dashboard__body {
@@ -39,16 +38,22 @@
   overflow: auto;
   max-width: 92vw;
 }
+.dashboard__body--wrapper {
+  max-height: 25rem;
+  margin: auto;
+}
 @media only screen and (min-width: 600px) {
   div.dashboard__body.liked {
+    position: relative;
     flex-direction: column;
-    height: 92vw;
+    height: auto;
+    max-height: 92vw;
     margin: auto 0;
-    transform: rotate(-90deg) translateY(-65%);
+    transform: rotate(-90deg) translateY(calc(-35vh - 50%));
     transform-origin: right top;
   }
   .recipe__liked-list {
-    transform: rotate(90deg);
+    transform: rotate(90deg) translateX(28rem);
     transform-origin: right top;
   }
   ::-webkit-scrollbar {
@@ -61,6 +66,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   border-radius: 2rem 0.1rem 2rem 0.1rem;
+  display: inline-block;
 }
 .recipe__liked-list > a:hover {
   transition: all 0.2s ease;
@@ -69,7 +75,7 @@
   margin: 1rem;
   height: 200px;
   width: 400px;
-  filter: brightness(0.75);
+  filter: brightness(0.75) saturate(1.25) hue-rotate(1deg);
   border-radius: 2rem;
   z-index: -1;
 }
@@ -83,7 +89,7 @@
   font-size: 16px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 20px;
   border-radius: 4px;
-  padding: 32px 16px;
+  padding: 3.5rem 1.5rem;
   transition: all 0.4s ease 0s;
-  margin: 10px;
+  margin: 0.75rem;
 }
