@@ -5,7 +5,7 @@ import { getPredictions } from "../utils/Recipe/get_predicted";
 import Loader from "../common/Loader";
 class RecipeFinder extends Component {
   state = { recipe: [], isLoading: true, ingredients: [] };
-  componentDidMount = async () => {
+  async componentDidMount() {
     const { location, match, history } = this.props;
     let recipe = location.state;
     const ingredients = match.params.query ? match.params.query.split(",") : 0;
@@ -15,7 +15,7 @@ class RecipeFinder extends Component {
       await history.push("/guide");
     }
     return this.setState({ recipe, ingredients, isLoading: false });
-  };
+  }
   render() {
     const { recipe, isLoading } = this.state;
     if (isLoading && recipe.length === 0) {

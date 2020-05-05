@@ -14,7 +14,7 @@ class Recipe extends Component {
     liked: false,
     failed: false,
   };
-  componentDidMount = async () => {
+  async componentDidMount() {
     let { cuisine, liked } = this.state;
     const id = parseInt(this.props.match.params.id);
     cuisine = await getRecipe(id);
@@ -24,7 +24,7 @@ class Recipe extends Component {
     if (cuisine && cuisine["id"] === id)
       return this.setState({ cuisine, loading: false, liked });
     return this.setState({ loading: false, failed: true });
-  };
+  }
   onClick = async () => {
     let { liked, cuisine } = this.state;
     if (await isLoggedIn()) {

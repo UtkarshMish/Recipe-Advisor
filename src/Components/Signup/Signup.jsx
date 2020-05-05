@@ -20,11 +20,11 @@ class Signup extends Component {
       this.setState({ exist: false });
     return this.setState({ users });
   };
-  componentDidMount = () => {
+  async componentDidMount() {
     if (this.props.loggedIn === true) {
       this.props.history.push("/dashboard");
     }
-  };
+  }
   handleSubmit = async (e) => {
     e.preventDefault();
     let response = false;

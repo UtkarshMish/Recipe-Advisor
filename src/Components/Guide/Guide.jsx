@@ -27,13 +27,12 @@ class Guide extends Component {
     let { ingredients } = this.state;
     let item = parseInt(e.target.name);
     if (isNaN(item)) {
-      ingredients = [""];
-    } else {
-      ingredients = ingredients.filter((ele, i) => (i !== item ? ele : null));
+      item = parseInt(e.currentTarget.name);
     }
+    ingredients = ingredients.filter((ele, i) => (i !== item ? ele : null));
     return this.setState({ ingredients });
   };
-  handleSubmit = async (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const { ingredients } = this.state;
     if (ingredients.length > 0) {
