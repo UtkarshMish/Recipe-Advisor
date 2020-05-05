@@ -2,14 +2,18 @@ import React from "react";
 import { GiPoisonCloud, GiBackwardTime } from "react-icons/gi";
 import { useHistory } from "react-router-dom";
 
-const goBack = history => {
-  return history.push("/");
+const goBack = (history, backArea, handleClick = undefined) => {
+  if (handleClick !== undefined) handleClick();
+  return history.push(backArea);
 };
-const Failed = () => {
+const Failed = ({ backArea, handleClick }) => {
   const history = useHistory();
   return (
     <div className="failed__container">
-      <button onClick={() => goBack(history)} className="goback-button">
+      <button
+        onClick={() => goBack(history, backArea, handleClick)}
+        className="goback-button"
+      >
         <GiBackwardTime />
       </button>
       <div className="failed__body">

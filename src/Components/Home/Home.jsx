@@ -12,7 +12,7 @@ const Home = () => {
       <h3 className="sub-main__title">
         Make whatever you want whenever you want to.
       </h3>
-      <Link to="/" className="main__button">
+      <Link to="/guide" className="main__button">
         Get Started
         <FaArrowRight className="icon" />
       </Link>

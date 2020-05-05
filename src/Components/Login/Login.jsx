@@ -7,10 +7,10 @@ import { setUserApi } from "../utils/Auth/storeToken";
 class Login extends Component {
   state = {
     users: { email: "", password: "" },
-    fail: undefined
+    fail: undefined,
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     let response = false;
     const { users } = this.state;
@@ -25,12 +25,15 @@ class Login extends Component {
       return this.setState({ fail: true });
     }
   };
-  componentDidMount = () => {
-    if (this.state.loggedIn === true || this.props.loggedIn === true) {
+  componentDidMount = async () => {
+    if (
+      (await this.props.loggedIn) === true ||
+      (await this.state.loggedIn) === true
+    ) {
       this.props.history.push("/dashboard");
     }
   };
-  updateValue = e => {
+  updateValue = (e) => {
     const name = e.target.name;
     const { users } = this.state;
     users[name] = e.target.value;
@@ -45,13 +48,13 @@ class Login extends Component {
             <p>If you are Existing Recipe Advisor user</p>
           </div>
           <div className="login__body">
-            <form onSubmit={e => this.handleSubmit(e)}>
+            <form onSubmit={(e) => this.handleSubmit(e)}>
               <div className="view__column">
                 <input
                   placeholder="Email"
                   type="email"
                   name="email"
-                  onInput={e => this.updateValue(e)}
+                  onInput={(e) => this.updateValue(e)}
                   className="input__box email"
                   required
                 />
@@ -60,7 +63,7 @@ class Login extends Component {
                   placeholder="Password"
                   type="password"
                   name="password"
-                  onInput={e => this.updateValue(e)}
+                  onInput={(e) => this.updateValue(e)}
                   className="input__box password"
                   required
                   autoComplete={"true"}

@@ -9,6 +9,7 @@ import Login from "./Components/Login/Login";
 import Signup from "./Components/Signup/Signup";
 import Browse from "./Components/Browse/Browse";
 import Guide from "./Components/Guide/Guide";
+import RecipeFinder from "./Components/Guide/RecipeFinder";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
 import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
@@ -17,6 +18,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
+import { updateLikings } from "./Components/utils/Recipe/user_likings";
+import { getRecipe } from "./Components/utils/Recipe/cuisine";
 toast.configure();
 
 class App extends Component {
@@ -24,20 +27,11 @@ class App extends Component {
     loggedIn: false,
     isLoading: true,
     error: [],
-    colorCodes: {
-      "Smoky Video": "true",
-      "Classy Black": "black",
-      "Hotzy Green": "seagreen",
-      "Mother Blue": "midnightblue",
-      "Something Original": "salmon",
-    },
-    defaultColor: "black",
-    showVideo: true,
   };
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const auth = await isLoggedIn();
-    let error = this.state;
+    let { error } = this.state;
 
     if (auth.error) {
       error = String(auth["error"]).split(10);
@@ -46,62 +40,40 @@ class App extends Component {
       });
       return this.setState({ error, isLoading: false });
     }
-    return this.setState({ loggedIn: auth, isLoading: false });
-  };
+
+    return this.setState({
+      loggedIn: auth,
+      isLoading: false,
+    });
+  }
   updateUser = async () => {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
-  handleColorChange = async (e) => {
-    let { defaultColor, showVideo } = this.state;
-    defaultColor = e.target.value;
-    if (defaultColor !== "true") {
-      showVideo = false;
-    } else {
-      showVideo = true;
-      defaultColor = "black";
+  updateLikes = async () => {
+    const recipe_data = [];
+    let liked = await updateLikings();
+    liked = liked["liked_recipe"];
+    for (const index of liked) {
+      recipe_data.push(await getRecipe(index));
     }
-    return await this.setState({ defaultColor, showVideo });
+    return recipe_data;
   };
+
   render() {
-    const {
-      loggedIn,
-      isLoading,
-      error,
-      colorCodes,
-      defaultColor,
-      showVideo,
-    } = this.state;
-    const colorSwitcher = (
-      <div className="color-switch">
-        <select name="color" onChange={(e) => this.handleColorChange(e)}>
-          {Object.keys(colorCodes).map((color) => (
-            <option key={color} value={colorCodes[color]}>
-              {color}
-            </option>
-          ))}
-        </select>
-      </div>
-    );
+    const { loggedIn, isLoading, error } = this.state;
 
     const VIDEO = (
-      <div
-        className="bg__video"
-        style={{
-          background: `radial-gradient(circle at bottom,${defaultColor} 45%,rgb(37, 35, 35) 100%,transparent 3%)`,
-        }}
-      >
-        {showVideo ? (
-          <video
-            loop
-            muted
-            autoPlay
-            className="fullscreen-bg__video"
-            title="./Images/recipe-background.jpeg"
-          >
-            <source src={video} type="video/mp4" />
-          </video>
-        ) : null}
+      <div className="bg__video">
+        <video
+          loop
+          muted
+          autoPlay
+          className="fullscreen-bg__video"
+          title="./Images/recipe-background.jpeg"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
       </div>
     );
     if (isLoading)
@@ -119,14 +91,17 @@ class App extends Component {
         {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
-          {colorSwitcher}
           <React.Fragment>
             <Switch>
               <Route
                 exact
                 path="/dashboard"
                 component={(args) => (
-                  <Dashboard {...args} loggedIn={loggedIn} />
+                  <Dashboard
+                    {...args}
+                    loggedIn={loggedIn}
+                    liked={this.updateLikes}
+                  />
                 )}
                 className=" item"
               />
@@ -145,8 +120,14 @@ class App extends Component {
                 className=" item"
                 exact
               />
+              <Route
+                path="/guide/results/q=:query?"
+                component={RecipeFinder}
+                className=" item"
+                exact
+              />
 
-              <Route path="/guide" component={Guide} className=" item" exact />
+              <Route path="/guide" component={Guide} className=" item" />
               <Route
                 path="/login"
                 component={(args) => (

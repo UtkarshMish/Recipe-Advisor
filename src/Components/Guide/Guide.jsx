@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./Guide.css";
 import { TiPlus, TiMinus } from "react-icons/ti";
+
 class Guide extends Component {
   state = {
     count: [1],
-    ingredients: []
+    ingredients: [],
   };
-  updateValue = e => {
+  updateValue = (e) => {
     const name = parseInt(e.target.name);
     const { ingredients } = this.state;
     ingredients[name - 1] = e.target.value;
@@ -23,7 +24,7 @@ class Guide extends Component {
     }
     this.setState({ count });
   };
-  removeInput = e => {
+  removeInput = (e) => {
     let { count } = this.state;
 
     let item = parseInt(e.target.value);
@@ -33,15 +34,19 @@ class Guide extends Component {
     if (isNaN(count[0]) || count.length < 2) {
       count = [1];
     } else {
-      count = count.filter(ele => ele !== item);
+      count = count.filter((ele) => ele !== item);
       for (let index = 0; index < count.length; index++) {
         count[index] = index + 1;
       }
     }
     this.setState({ count });
   };
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    const { ingredients } = this.state;
+    if (ingredients.length > 0) {
+      return this.props.history.push(`/guide/results/q=${ingredients}`);
+    }
   };
   render() {
     const { count } = this.state;
@@ -51,7 +56,7 @@ class Guide extends Component {
           <div className="recipe__guess-form">
             <form
               action=""
-              onSubmit={e => this.handleSubmit(e)}
+              onSubmit={(e) => this.handleSubmit(e)}
               className="input__form"
             >
               <div className="guess-form__header">
@@ -60,7 +65,7 @@ class Guide extends Component {
                 </h3>
               </div>
               <div className="ingredient__container">
-                {count.map(num => {
+                {count.map((num) => {
                   if (num > 10) {
                     return (
                       <h2 key={num} className="input__box">
@@ -76,13 +81,15 @@ class Guide extends Component {
                         className="input__box"
                         name={`${num}`}
                         placeholder={`Add Ingredient ${num}`}
-                        onInput={e => this.updateValue(e)}
+                        onInput={(e) => this.updateValue(e)}
+                        required
                       />
 
                       <button
+                        type="button"
                         value={num}
                         className="add__link-button"
-                        onClick={e => this.removeInput(e)}
+                        onClick={(e) => this.removeInput(e)}
                       >
                         <TiMinus />
                       </button>
@@ -90,7 +97,11 @@ class Guide extends Component {
                   );
                 })}
               </div>
-              <button className="add__link-button" onClick={this.addInput}>
+              <button
+                type="button"
+                className="add__link-button"
+                onClick={this.addInput}
+              >
                 <TiPlus />
               </button>
               <div className="submit__container">

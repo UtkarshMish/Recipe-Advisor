@@ -8,11 +8,11 @@ class Signup extends Component {
     users: {
       user_name: "",
       email: "",
-      password: ""
+      password: "",
     },
-    exist: false
+    exist: false,
   };
-  updateValue = e => {
+  updateValue = (e) => {
     const name = e.target.name;
     const { users } = this.state;
     users[name] = e.target.value;
@@ -20,12 +20,12 @@ class Signup extends Component {
       this.setState({ exist: false });
     return this.setState({ users });
   };
-  UNSAFE_componentWillMount = () => {
+  componentDidMount = () => {
     if (this.props.loggedIn === true) {
       this.props.history.push("/dashboard");
     }
   };
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     let response = false;
     const { users } = this.state;
@@ -35,9 +35,9 @@ class Signup extends Component {
     }
     if (response.value === "exist") {
       return this.setState({ exist: true });
-    } else if (setUserApi(response.username, response.token)) {
-      this.props.history.push("/dashboard");
-      return this.props.updateUser();
+    } else if (await setUserApi(response.username, response.token)) {
+      await this.props.updateUser();
+      return this.props.history.push("/dashboard");
     }
   };
   render() {
@@ -50,14 +50,14 @@ class Signup extends Component {
               Existing Recipe Advisor user? Log In
             </Link>
           </div>
-          <form onSubmit={e => this.handleSubmit(e)}>
+          <form onSubmit={(e) => this.handleSubmit(e)}>
             <div className="view__column">
               <input
                 placeholder="Display Name"
                 type="text"
                 name="user_name"
                 className="input__box user_name"
-                onInput={e => this.updateValue(e)}
+                onInput={(e) => this.updateValue(e)}
                 required
               />
               <input
@@ -65,7 +65,7 @@ class Signup extends Component {
                 type="email"
                 name="email"
                 className="input__box email"
-                onInput={e => this.updateValue(e)}
+                onInput={(e) => this.updateValue(e)}
                 required
               />
               {this.state.exist ? (
@@ -77,7 +77,7 @@ class Signup extends Component {
                 type="password"
                 name="password"
                 className="input__box password"
-                onInput={e => this.updateValue(e)}
+                onInput={(e) => this.updateValue(e)}
                 pattern="(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}"
                 title="6 character with an uppercase and a special character"
                 autoComplete={"true"}

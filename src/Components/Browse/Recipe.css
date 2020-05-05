@@ -46,7 +46,7 @@
 }
 .recipe__info {
   display: inherit;
-  margin: auto 5rem;
+  margin: auto 2rem;
   font-size: medium;
   text-align: center;
   flex-wrap: wrap;
@@ -58,8 +58,31 @@
   border: 0.1rem solid salmon;
   border-radius: 2rem;
   border-left: none;
+
   text-transform: capitalize;
 }
 .recipe__info > p:not(:last-child) {
   margin: 1rem;
+}
+.recipe__instructions {
+  font-size: 1.1rem;
+  margin: auto 2rem;
+  background-color: #641040b2;
+  border-radius: 2rem;
+}
+.recipe__heading {
+  text-align: center;
+  text-transform: uppercase;
+}
+.recipe__instructions > ol > li {
+  margin: 2rem;
+  text-transform: capitalize;
+}
+.login__error {
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+  text-transform: uppercase;
+  background-color: rgb(218, 4, 75);
+  border-radius: 1.7rem;
 }
