@@ -20,8 +20,8 @@ class Recipe extends Component {
     cuisine = await getRecipe(id);
     const liking = await updateLikings();
     if (
-      liking &&
-      liking.length > 0 &&
+      liking["liked_recipe"] &&
+      liking["liked_recipe"].length > 0 &&
       liking["liked_recipe"].find((elm) => parseInt(elm["id"]) === parseInt(id))
     )
       liked = true;
