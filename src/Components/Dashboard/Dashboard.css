@@ -43,7 +43,7 @@
   .dashboard__body--wrapper {
     max-height: 30rem;
   }
-  div.dashboard__body.liked {
+  div.dashboard__body {
     position: relative;
     flex-direction: column;
     height: auto;
@@ -86,7 +86,7 @@
   flex-direction: column-reverse;
   -webkit-box-align: center;
   align-items: center;
-  position: relative;
+  align-self: stretch;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 20px;
   border-radius: 4px;
   padding: 3.5rem 0.5rem;

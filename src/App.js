@@ -19,7 +19,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 import { updateLikings } from "./Components/utils/Recipe/user_likings";
-import { getRecipe } from "./Components/utils/Recipe/cuisine";
 toast.configure();
 
 class App extends Component {
@@ -51,13 +50,7 @@ class App extends Component {
     return this.setState({ loggedIn: auth });
   };
   updateLikes = async () => {
-    const recipe_data = [];
-    let liked = await updateLikings();
-    liked = liked["liked_recipe"];
-    for (const index of liked) {
-      recipe_data.push(await getRecipe(index));
-    }
-    return recipe_data;
+    return await updateLikings();
   };
 
   render() {

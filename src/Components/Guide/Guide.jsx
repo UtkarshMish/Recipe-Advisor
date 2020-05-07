@@ -32,7 +32,8 @@ class Guide extends Component {
     if (item === 0 && ingredients.length < 2) {
       return this.setState({ ingredients: [""] });
     }
-    ingredients = ingredients.filter((ele, i) => (i !== item ? ele : null));
+    ingredients = ingredients.filter((ele, i) => i !== item);
+    console.log(ingredients);
     return this.setState({ ingredients });
   };
   handleSubmit = (e) => {
