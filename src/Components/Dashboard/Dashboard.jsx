@@ -40,7 +40,6 @@ class Dashboard extends Component {
       if (username !== undefined) {
         recipe_data = await this.props.liked();
       }
-      console.log(recipe_data);
       return this.setState({ username, firstLogin: false, recipe_data });
     }
   }
