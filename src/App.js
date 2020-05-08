@@ -49,8 +49,8 @@ class App extends Component {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
-  updateLikes = async () => {
-    return await updateLikings();
+  updateLikes = async (recommendation) => {
+    return await updateLikings(recommendation);
   };
 
   render() {

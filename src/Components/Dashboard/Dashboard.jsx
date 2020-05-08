@@ -26,11 +26,12 @@ class Dashboard extends Component {
         localStorage.setItem("firstLogin", true);
       } else {
         localStorage.setItem("firstLogin", false);
+        await this.setState({ username });
       }
       if ((loggedIn || firstLogin) && username !== undefined) {
         toast.success(`Hello ${username}! let's Get you Started !`, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 2500,
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4500,
           hideProgressBar: true,
           closeButton: false,
           className: "greet__user",
@@ -38,9 +39,9 @@ class Dashboard extends Component {
       }
       let { recipe_data } = this.state;
       if (username !== undefined) {
-        recipe_data = await this.props.liked();
+        recipe_data = await this.props.liked(true);
       }
-      return this.setState({ username, firstLogin: false, recipe_data });
+      return this.setState({ firstLogin: false, recipe_data });
     }
   }
 
@@ -50,27 +51,35 @@ class Dashboard extends Component {
     if (!Boolean(username)) return <Loader />;
     return (
       <div className="dashboard__container">
-        {recommendations && recommendations.length > 0 ? (
+        {recommendations && recommendations.length >= 0 ? (
           <React.Fragment>
             <div className="dashboard__heading">
               <h2>Recipe Recommendation based on your choices!</h2>
             </div>
             <div className="dashboard__body--wrapper">
-              <div className="dashboard__body">
-                <RecipeCarousel item={recommendations} />
-              </div>
+              {recommendations && recommendations.length > 0 ? (
+                <div className="dashboard__body">
+                  <RecipeCarousel item={recommendations} />
+                </div>
+              ) : (
+                <Loader />
+              )}
             </div>
           </React.Fragment>
         ) : null}
-        {liked_recipe && liked_recipe.length > 0 ? (
+        {liked_recipe && liked_recipe.length >= 0 ? (
           <React.Fragment>
             <div className="dashboard__heading liked">
               <h2>Recipe liked based on your past history!</h2>
             </div>
             <div className="dashboard__body--wrapper">
-              <div className="dashboard__body liked">
-                <RecipeCarousel item={liked_recipe} />
-              </div>
+              {recommendations && recommendations.length > 0 ? (
+                <div className="dashboard__body liked">
+                  <RecipeCarousel item={liked_recipe} />
+                </div>
+              ) : (
+                <Loader />
+              )}
             </div>
           </React.Fragment>
         ) : null}

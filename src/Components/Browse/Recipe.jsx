@@ -18,11 +18,11 @@ class Recipe extends Component {
     let { cuisine, liked } = this.state;
     const id = parseInt(this.props.match.params.id);
     cuisine = await getRecipe(id);
-    const liking = await updateLikings();
+    const liking = await updateLikings(false);
     if (
       liking["liked_recipe"] &&
       liking["liked_recipe"].length > 0 &&
-      liking["liked_recipe"].find((elm) => parseInt(elm["id"]) === parseInt(id))
+      liking["liked_recipe"].find((elm) => parseInt(elm) === parseInt(id))
     )
       liked = true;
     if (cuisine && cuisine["id"] === id)
@@ -33,7 +33,7 @@ class Recipe extends Component {
     let { liked, cuisine } = this.state;
     if (await isLoggedIn()) {
       liked = !liked;
-      let response = await updateLikings(liked, cuisine["id"]);
+      let response = await updateLikings(false, liked, cuisine["id"]);
       if (response.value === true) return this.setState({ liked });
     } else
       toast.error("Log in required", {
