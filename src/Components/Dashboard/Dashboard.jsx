@@ -67,7 +67,7 @@ class Dashboard extends Component {
             </div>
           </React.Fragment>
         ) : null}
-        {liked_recipe && liked_recipe.length >= 0 ? (
+        {liked_recipe && liked_recipe.length > 0 ? (
           <React.Fragment>
             <div className="dashboard__heading liked">
               <h2>Recipe liked based on your past history!</h2>
