@@ -81,12 +81,21 @@ class Recipe extends Component {
         </div>
         <div className="recipe__instructions">
           <h2 className="recipe__heading">Instructions</h2>
-          <ol>
+          <ul>
             {cuisine["description"] &&
-              cuisine["description"].map((steps) => (
-                <li key={steps["phrase"]}>{steps["phrase"]}</li>
-              ))}
-          </ol>
+              cuisine["description"].map((steps, index) =>
+                !Array.isArray(steps) ? (
+                  <li key={index}>{steps}</li>
+                ) : (
+                  steps.map((item) => (
+                    <li key={item} className="list-items">
+                      {" "}
+                      {item}
+                    </li>
+                  ))
+                )
+              )}
+          </ul>
         </div>
       </div>
     );
