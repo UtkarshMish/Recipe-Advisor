@@ -45,20 +45,20 @@ class RecipeFinder extends Component {
                     {cuisine["ingredients"] &&
                       cuisine["ingredients"].map((ingredient, index) => (
                         <li
-                          key={ingredient.name + index}
+                          key={ingredient + index}
                           className={
                             this.state.ingredients
                               .map((ing) =>
-                                String(ingredient.phrase).includes(
-                                  String(ing).toLowerCase()
-                                )
+                                String(ingredient)
+                                  .toLowerCase()
+                                  .includes(String(ing).toLowerCase())
                               )
                               .some((item) => item)
                               ? "ingredients item-checked"
                               : "ingredients not-checked"
                           }
                         >
-                          {ingredient.phrase}
+                          {ingredient}
                         </li>
                       ))}
                   </ul>
