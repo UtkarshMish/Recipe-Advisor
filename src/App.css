@@ -244,9 +244,9 @@ body {
   padding: 1rem 1rem;
 }
 .recipe__image {
-  min-width: 13rem;
+  min-width: 6rem;
   width: auto;
-  max-width: calc(50% - 16rem);
+  max-width: calc(100% - 25rem);
 }
 .recipe__image > img {
   max-height: 100%;
