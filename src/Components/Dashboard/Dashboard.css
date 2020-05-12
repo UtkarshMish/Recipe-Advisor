@@ -71,6 +71,7 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   border-radius: 2rem 0.1rem 2rem 0.1rem;
   display: inline-block;
+  max-width: 50%;
 }
 .recipe__liked-list > a:hover {
   transition: all 0.2s ease;
