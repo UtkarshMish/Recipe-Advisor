@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Header from "./Components/common/Header";
 import "./App.css";
 import Footer from "./Components/common/Footer";
-import video from "./Videos/video.mp4";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
@@ -13,7 +12,6 @@ import RecipeFinder from "./Components/Guide/RecipeFinder";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
 import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
@@ -56,23 +54,9 @@ class App extends Component {
   render() {
     const { loggedIn, isLoading, error } = this.state;
 
-    const VIDEO = (
-      <div className="bg__video">
-        <video
-          loop
-          muted
-          autoPlay
-          className="fullscreen-bg__video"
-          title="./Images/recipe-background.jpeg"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
-    );
     if (isLoading)
       return (
         <React.Fragment>
-          {VIDEO}
           <div className="App">
             {error[0] ? <ToastContainer /> : null}
             <Loader />
@@ -81,7 +65,6 @@ class App extends Component {
       );
     return (
       <React.Fragment>
-        {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
 
