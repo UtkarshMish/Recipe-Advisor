@@ -64,11 +64,17 @@ class Recipe extends Component {
             <h2 className="recipe__heading">Ingredients in Recipe:</h2>
             <ul>
               {cuisine["ingredients"] &&
-                cuisine["ingredients"].map((ingredient, index) => (
-                  <li key={index} className="ingredients">
-                    {ingredient}
-                  </li>
-                ))}
+                cuisine["ingredients"].map((ingredient, index) =>
+                  ingredient !== ingredient.toUpperCase() ? (
+                    <li key={index} className="ingredients">
+                      {ingredient}
+                    </li>
+                  ) : (
+                    <h5 key={index} className="ingredients-heading">
+                      {ingredient}
+                    </h5>
+                  )
+                )}
             </ul>
           </div>
         </div>
@@ -76,7 +82,7 @@ class Recipe extends Component {
         <div className="recipe__info">
           <p>{"Serving Count :" + cuisine["serving_count"]}</p>
           {Object.keys(cuisine["nutrition"]).map((item) => (
-            <p key={item}>{cuisine["nutrition"][item]}</p>
+            <p key={item}>{item + " : " + cuisine["nutrition"][item]}</p>
           ))}
         </div>
         <div className="recipe__instructions">
@@ -85,12 +91,14 @@ class Recipe extends Component {
             {cuisine["description"] &&
               cuisine["description"].map((steps, index) =>
                 !Array.isArray(steps) ? (
-                  <li key={index}>{steps}</li>
+                  <li
+                    key={index}
+                    dangerouslySetInnerHTML={{ __html: steps }}
+                  ></li>
                 ) : (
                   steps.map((item) => (
                     <li key={item} className="list-items">
-                      {" "}
-                      {item}
+                      {" " + item}
                     </li>
                   ))
                 )
