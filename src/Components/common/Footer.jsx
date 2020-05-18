@@ -12,7 +12,7 @@ const Footer = () => {
               <Link to="/" className="footer-item">
                 Jobs
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/contact-us" className="footer-item">
                 Contact Us
               </Link>
               <Link to="/" className="footer-item">

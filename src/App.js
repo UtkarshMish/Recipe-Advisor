@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 import { updateLikings } from "./Components/utils/Recipe/user_likings";
+import Contact from "./Components/common/Contact";
 toast.configure();
 
 class App extends Component {
@@ -114,6 +115,12 @@ class App extends Component {
                     {...args}
                   />
                 )}
+                className=" item"
+                exact
+              />
+              <Route
+                path="/contact-us"
+                component={Contact}
                 className=" item"
                 exact
               />
