@@ -388,36 +388,42 @@ body {
   border-bottom: 0.2rem solid rgb(194, 52, 83);
 }
 .contact__container {
-  height: 100vh;
-}
-.contact_form {
-  background: url(./Images/office.jpg) 85%;
-  background-size: cover;
-  border-radius: 2rem;
+  height: 100%;
+  margin: 5% auto;
   display: flex;
   flex-direction: column;
-  margin: 5rem auto;
-  width: 55vw;
-  padding: 1rem;
+  align-items: center;
+}
+.contact_form {
+  background: url(./Images/office.jpg) 38%;
+  background-size: cover;
+  border-radius: 2rem;
+  text-align: center;
+  display: inherit;
+  flex-direction: column;
   align-items: center;
   font-size: large;
+  flex-wrap: nowrap;
+  padding: 0 8%;
 }
 
 .content {
   display: flex;
-  align-self: stretch;
   flex-wrap: wrap;
   border: 0.2rem solid rgba(59, 240, 146, 0.782);
   border-radius: 2.5rem 0 2.5rem 0;
-  padding: 1.2rem 3rem;
-  margin: 1.2rem;
-  padding-left: 0.5rem;
+  padding: 7% 10%;
+  margin: 8% auto;
+}
+.content:focus-within {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in;
 }
 .content label {
   color: #000;
   text-align: left;
   text-transform: capitalize;
-  margin-right: 1rem;
+  margin-right: 2%;
 }
 .content input,
 .content textarea {
@@ -440,6 +446,13 @@ body {
   margin: 1rem;
   width: auto;
   border-radius: 8px;
+  transition: all 0.2s ease-out;
+}
+.btn:hover {
+  transform: translateY(-0.25rem);
+}
+.btn:active {
+  transform: translate(0);
 }
 .submit-success {
   margin-top: 25%;
