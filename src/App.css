@@ -388,12 +388,11 @@ body {
   border-bottom: 0.2rem solid rgb(194, 52, 83);
 }
 .contact__container {
-  background: url(./Images/office.jpg) rgba(52, 52, 25, 0.5);
-  background-blend-mode: darken;
-  background-size: cover;
   height: 100vh;
 }
 .contact_form {
+  background: url(./Images/office.jpg) 85%;
+  background-size: cover;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
