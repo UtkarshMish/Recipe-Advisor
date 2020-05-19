@@ -382,15 +382,18 @@ body {
 /* Contact US page */
 .contact__heading {
   font-weight: bold;
-  color: rgb(152, 39, 64);
+  color: rgb(194, 52, 83);
   font-size: xx-large;
   text-transform: uppercase;
-  border-bottom: 0.2rem solid rgb(152, 39, 64);
+  border-bottom: 0.2rem solid rgb(194, 52, 83);
+}
+.contact__container {
+  background: url(./Images/office.jpg) rgba(52, 52, 25, 0.5);
+  background-blend-mode: darken;
+  background-size: cover;
+  height: 100vh;
 }
 .contact_form {
-  background: url(./Images/office.jpg) rgba(84, 84, 76, 0.5);
-  background-blend-mode: multiply;
-  background-size: cover;
   border-radius: 2rem;
   display: flex;
   flex-direction: column;
@@ -406,19 +409,20 @@ body {
   align-self: stretch;
   flex-wrap: wrap;
   border: 0.2rem solid rgba(59, 240, 146, 0.782);
-  border-radius: 2rem 0.75rem 2rem 0.75rem;
+  border-radius: 2.5rem 0 2.5rem 0;
   padding: 1.2rem 3rem;
   margin: 1.2rem;
   padding-left: 0.5rem;
 }
 .content label {
+  color: #000;
   text-align: left;
   text-transform: capitalize;
   margin-right: 1rem;
 }
 .content input,
 .content textarea {
-  color: aliceblue;
+  color: rgb(0, 51, 101);
   font-size: large;
   border: none;
   background: none;
@@ -437,4 +441,9 @@ body {
   margin: 1rem;
   width: auto;
   border-radius: 8px;
+}
+.submit-success {
+  margin-top: 25%;
+  text-align: center;
+  color: rgb(21, 255, 0);
 }
