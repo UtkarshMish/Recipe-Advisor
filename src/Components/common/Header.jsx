@@ -12,7 +12,7 @@ class Header extends Component {
   };
   render() {
     const { hideMenu } = this.state;
-    const STYLE = hideMenu ? { display: "none" } : { display: "flex" };
+    const STYLE = hideMenu ? null : { display: "flex" };
     return (
       <div className="header__container">
         <div className="hamburger-menu" onClick={this.showMenu}>
