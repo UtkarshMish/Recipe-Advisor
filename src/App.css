@@ -485,12 +485,12 @@ body {
   width: 100%;
 }
 .tryAgain__body {
-  padding: 10%;
   text-align: center;
 }
 .tryAgain__message {
-  font-size: 4rem;
+  font-size: xx-large;
+  padding: 15%;
   font-weight: 700;
-  color: crimson;
+  color: rgb(190, 0, 25);
   text-transform: capitalize;
 }
