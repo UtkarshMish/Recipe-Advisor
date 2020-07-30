@@ -18,16 +18,19 @@ import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 import { updateLikings } from "./Components/utils/Recipe/user_likings";
 import Contact from "./Components/common/Contact";
+import TryAgain from "./Components/common/TryAgain";
 toast.configure();
 
-class App extends Component {
+class App extends Component
+{
   state = {
     loggedIn: false,
     isLoading: true,
     error: [],
   };
 
-  async componentDidMount() {
+  async componentDidMount()
+  {
     const auth = await isLoggedIn();
     let { error } = this.state;
 
@@ -44,15 +47,18 @@ class App extends Component {
       isLoading: false,
     });
   }
-  updateUser = async () => {
+  updateUser = async () =>
+  {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
-  updateLikes = async (recommendation) => {
+  updateLikes = async (recommendation) =>
+  {
     return await updateLikings(recommendation);
   };
 
-  render() {
+  render()
+  {
     const { loggedIn, isLoading, error } = this.state;
 
     if (isLoading)
@@ -71,6 +77,7 @@ class App extends Component {
 
           <React.Fragment>
             <Switch>
+              <Route path="/check/:name" component={TryAgain} className=" item" />
               <Route
                 exact
                 path="/dashboard"
@@ -143,7 +150,6 @@ class App extends Component {
                 component={Recipe}
               />
               <Route path="/" component={Home} className=" item" />
-
               <Route component={Home} />
             </Switch>
           </React.Fragment>

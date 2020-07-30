@@ -9,16 +9,16 @@ const Footer = () => {
           <div className="main__footer-column">
             <h4 className="main__footer-heading">About</h4>
             <div className="main__footer-links">
-              <Link to="/" className="footer-item">
+              <Link to="/check/jobs" className="footer-item">
                 Jobs
               </Link>
-              <Link to="/contact-us" className="footer-item">
+              <Link to="/check/contact-us" className="footer-item">
                 Contact Us
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/check/support" className="footer-item">
                 Customer Support
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/check/futureplans" className="footer-item">
                 Future Plans
               </Link>
             </div>
@@ -26,16 +26,16 @@ const Footer = () => {
           <div className="main__footer-column">
             <h4 className="main__footer-heading">Services</h4>
             <div className="main__footer-links">
-              <Link to="/" className="footer-item">
+              <Link to="/check/datapolicy" className="footer-item">
                 Data Policy
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/check/faq" className="footer-item">
                 FAQ
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/check/howtoaccess" className="footer-item">
                 How To Access
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to="/check/advertise" className="footer-item">
                 Advertise
               </Link>
             </div>

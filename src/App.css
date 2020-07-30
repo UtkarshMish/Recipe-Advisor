@@ -480,3 +480,17 @@ body {
   text-align: center;
   color: rgb(21, 255, 0);
 }
+.tryAgain__container {
+  height: 100%;
+  width: 100%;
+}
+.tryAgain__body {
+  padding: 10%;
+  text-align: center;
+}
+.tryAgain__message {
+  font-size: 55rem;
+  font-weight: 700;
+  color: crimson;
+  text-transform: capitalize;
+}
