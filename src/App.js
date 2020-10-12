@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Header from "./Components/common/Header";
 import "./App.css";
 import Footer from "./Components/common/Footer";
-import video from "./Videos/video.mp4";
 import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
@@ -13,23 +12,25 @@ import RecipeFinder from "./Components/Guide/RecipeFinder";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Logout from "./Components/common/logout";
 import { isLoggedIn } from "./Components/utils/Auth/checkLogin";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "./Components/common/Loader";
 import Recipe from "./Components/Browse/Recipe";
 import { updateLikings } from "./Components/utils/Recipe/user_likings";
-import { getRecipe } from "./Components/utils/Recipe/cuisine";
+import Contact from "./Components/common/Contact";
+import TryAgain from "./Components/common/TryAgain";
 toast.configure();
 
-class App extends Component {
+class App extends Component
+{
   state = {
     loggedIn: false,
     isLoading: true,
     error: [],
   };
 
-  async componentDidMount() {
+  async componentDidMount()
+  {
     const auth = await isLoggedIn();
     let { error } = this.state;
 
@@ -46,40 +47,23 @@ class App extends Component {
       isLoading: false,
     });
   }
-  updateUser = async () => {
+  updateUser = async () =>
+  {
     const auth = (await isLoggedIn()) || false;
     return this.setState({ loggedIn: auth });
   };
-  updateLikes = async () => {
-    const recipe_data = [];
-    let liked = await updateLikings();
-    liked = liked["liked_recipe"];
-    for (const index of liked) {
-      recipe_data.push(await getRecipe(index));
-    }
-    return recipe_data;
+  updateLikes = async (recommendation) =>
+  {
+    return await updateLikings(recommendation);
   };
 
-  render() {
+  render()
+  {
     const { loggedIn, isLoading, error } = this.state;
 
-    const VIDEO = (
-      <div className="bg__video">
-        <video
-          loop
-          muted
-          autoPlay
-          className="fullscreen-bg__video"
-          title="./Images/recipe-background.jpeg"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
-    );
     if (isLoading)
       return (
         <React.Fragment>
-          {VIDEO}
           <div className="App">
             {error[0] ? <ToastContainer /> : null}
             <Loader />
@@ -88,11 +72,11 @@ class App extends Component {
       );
     return (
       <React.Fragment>
-        {VIDEO}
         <div className="App">
           <Header loggedIn={loggedIn} />
           <React.Fragment>
             <Switch>
+              <Route path="/check/:name" component={TryAgain} className=" item" />
               <Route
                 exact
                 path="/dashboard"
@@ -140,6 +124,12 @@ class App extends Component {
                 className=" item"
                 exact
               />
+              <Route
+                path="/contact-us"
+                component={Contact}
+                className=" item"
+                exact
+              />
 
               <Route
                 path="/signup"
@@ -159,7 +149,6 @@ class App extends Component {
                 component={Recipe}
               />
               <Route path="/" component={Home} className=" item" />
-
               <Route component={Home} />
             </Switch>
           </React.Fragment>

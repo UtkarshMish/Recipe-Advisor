@@ -25,14 +25,14 @@ class Login extends Component {
       return this.setState({ fail: true });
     }
   };
-  componentDidMount = async () => {
+  async componentDidMount() {
     if (
       (await this.props.loggedIn) === true ||
       (await this.state.loggedIn) === true
     ) {
       this.props.history.push("/dashboard");
     }
-  };
+  }
   updateValue = (e) => {
     const name = e.target.name;
     const { users } = this.state;

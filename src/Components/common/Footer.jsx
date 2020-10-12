@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PageNames from "../../configs/PageName";
 
 const Footer = () => {
   return (
@@ -9,16 +10,16 @@ const Footer = () => {
           <div className="main__footer-column">
             <h4 className="main__footer-heading">About</h4>
             <div className="main__footer-links">
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.JOBS}`} className="footer-item">
                 Jobs
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to={`/${PageNames.CONTACT}`} className="footer-item">
                 Contact Us
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.SUPPORT}`} className="footer-item">
                 Customer Support
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.FUTURE}`} className="footer-item">
                 Future Plans
               </Link>
             </div>
@@ -26,16 +27,19 @@ const Footer = () => {
           <div className="main__footer-column">
             <h4 className="main__footer-heading">Services</h4>
             <div className="main__footer-links">
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.POLICY}`} className="footer-item">
                 Data Policy
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.FAQ}`} className="footer-item">
                 FAQ
               </Link>
-              <Link to="/" className="footer-item">
+              <Link to={`/check/${PageNames.HOWTO}`} className="footer-item">
                 How To Access
               </Link>
-              <Link to="/" className="footer-item">
+              <Link
+                to={`/check/${PageNames.ADVERTISE}`}
+                className="footer-item"
+              >
                 Advertise
               </Link>
             </div>

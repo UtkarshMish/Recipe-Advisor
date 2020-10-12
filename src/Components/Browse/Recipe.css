@@ -52,6 +52,12 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.ingredients-heading {
+  color: greenyellow;
+  font-size: 1.25rem;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .recipe__info > p {
   padding: 1rem;
   margin: 1rem;
@@ -73,8 +79,12 @@
 .recipe__heading {
   text-align: center;
   text-transform: uppercase;
+  color: sandybrown;
 }
-.recipe__instructions > ol > li {
+.recipe__instructions > ul {
+  list-style: circle;
+}
+.recipe__instructions > ul > li {
   margin: 2rem;
   text-transform: capitalize;
 }
@@ -85,4 +95,8 @@
   text-transform: uppercase;
   background-color: rgb(218, 4, 75);
   border-radius: 1.7rem;
+}
+.list-items {
+  list-style: none;
+  padding-left: 2rem;
 }

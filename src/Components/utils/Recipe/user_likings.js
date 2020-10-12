@@ -1,6 +1,10 @@
 import axios from "axios";
 export const getLikings = async () => {};
-export const updateLikings = async (liked = null, recipe_id = null) => {
+export const updateLikings = async (
+  recommendation = false,
+  liked = null,
+  recipe_id = null
+) => {
   const user = sessionStorage.getItem("user") || false;
   const token = user ? sessionStorage.getItem("token") : false;
   if (!token) {
@@ -11,6 +15,7 @@ export const updateLikings = async (liked = null, recipe_id = null) => {
     token,
     liked,
     recipe_id,
+    recommendation,
   });
   return response.data;
 };

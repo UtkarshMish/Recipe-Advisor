@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import "./Dashboard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 import Loader from "../common/Loader";
+import RecipeCarousel from "./RecipeCarousel";
 class Dashboard extends Component {
-  state = { username: undefined, success: false, firstLogin: false, liked: [] };
+  state = {
+    username: undefined,
+    success: false,
+    firstLogin: false,
+    recipe_data: {
+      liked_recipe: [],
+      recommendations: [],
+    },
+  };
   async componentDidMount() {
     if ((await this.props.loggedIn) === false) {
       return this.props.history.push("/login");
@@ -18,55 +26,60 @@ class Dashboard extends Component {
         localStorage.setItem("firstLogin", true);
       } else {
         localStorage.setItem("firstLogin", false);
+        await this.setState({ username });
       }
       if ((loggedIn || firstLogin) && username !== undefined) {
         toast.success(`Hello ${username}! let's Get you Started !`, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 2500,
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 4500,
           hideProgressBar: true,
           closeButton: false,
           className: "greet__user",
         });
       }
-      let { liked } = this.state;
-      if (username !== undefined) liked = await this.props.liked();
-
-      return this.setState({ username, firstLogin: false, liked });
+      let { recipe_data } = this.state;
+      if (username !== undefined) {
+        recipe_data = await this.props.liked(true);
+      }
+      return this.setState({ firstLogin: false, recipe_data });
     }
   }
 
   render() {
-    const { username, liked } = this.state;
+    const { username, recipe_data } = this.state;
+    const { liked_recipe, recommendations } = recipe_data;
     if (!Boolean(username)) return <Loader />;
     return (
       <div className="dashboard__container">
-        <div className="dashboard__heading">
-          <h2>Recipe Recommendation based on your choices!</h2>
-        </div>
-        <div className="dashboard__body"></div>
-        {liked && liked.length > 0 ? (
+        {recommendations && recommendations.length >= 0 ? (
+          <React.Fragment>
+            <div className="dashboard__heading">
+              <h2>Recipe Recommendation based on your choices!</h2>
+            </div>
+            <div className="dashboard__body--wrapper">
+              {recommendations && recommendations.length > 0 ? (
+                <div className="dashboard__body">
+                  <RecipeCarousel item={recommendations} />
+                </div>
+              ) : (
+                <Loader />
+              )}
+            </div>
+          </React.Fragment>
+        ) : null}
+        {liked_recipe && liked_recipe.length > 0 ? (
           <React.Fragment>
             <div className="dashboard__heading liked">
               <h2>Recipe liked based on your past history!</h2>
             </div>
             <div className="dashboard__body--wrapper">
-              <div className="dashboard__body liked">
-                {liked.map((recipe) => (
-                  <div key={recipe.id} className="recipe__liked-list">
-                    <Link
-                      to={`/browse/recipe/${recipe.id}`}
-                      className="recipe__button"
-                    >
-                      {recipe.name}
-                    </Link>
-                    <img
-                      className="recipe_image"
-                      src={recipe.img_link}
-                      alt={recipe.name}
-                    />
-                  </div>
-                ))}
-              </div>
+              {recommendations && recommendations.length > 0 ? (
+                <div className="dashboard__body liked">
+                  <RecipeCarousel item={liked_recipe} />
+                </div>
+              ) : (
+                <Loader />
+              )}
             </div>
           </React.Fragment>
         ) : null}

@@ -33,6 +33,7 @@ class Browse extends Component {
         startValue,
         currentPage,
         failed: false,
+        isSearching: false,
       });
     }
     return this.setState({ isLoading: false, failed: true });
@@ -91,25 +92,28 @@ class Browse extends Component {
   searchRecipe = async () => {
     let { searchQuery, cuisines, pageSize, startValue } = this.state;
     startValue = 1;
+    this.setState({ isSearching: true });
     cuisines = await searchCuisine(searchQuery, startValue);
     const size = cuisines.pop();
     pageSize = size["totalSize"];
-    this.setState({
-      cuisines,
-      isLoading: false,
-      pageSize,
-      startValue,
-      currentPage: 1,
-      failed: false,
-    });
     if (pageSize === 0) {
       return this.setState({
         isLoading: false,
         startValue,
         currentPage: 1,
         failed: true,
+        isSearching: false,
       });
     }
+    return this.setState({
+      cuisines,
+      isLoading: false,
+      pageSize,
+      startValue,
+      currentPage: 1,
+      failed: false,
+      isSearching: false,
+    });
   };
   render() {
     const {
@@ -120,38 +124,51 @@ class Browse extends Component {
       startValue,
       searchQuery,
       failed,
+      isSearching,
     } = this.state;
     if (isLoading) return <Loader />;
     else
       return (
         <React.Fragment>
           <div className="search__list">
-            <input
-              type="text"
-              onChange={(e) => this.handleSearch(e)}
-              className="input__box"
-              name="search"
-              value={searchQuery}
-              placeholder="Search Cuisine!"
-            />
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <input
+                type="text"
+                onChange={(e) => this.handleSearch(e)}
+                className="input__box"
+                name="search"
+                value={searchQuery}
+                placeholder="Search Cuisine!"
+              />
+            </form>
           </div>
-          {failed ? (
-            <Failed backArea="/browse" handleClick={this.handleFailClick} />
+          {!isSearching ? (
+            <React.Fragment>
+              {failed ? (
+                <Failed backArea="/browse" handleClick={this.handleFailClick} />
+              ) : (
+                <div className="recipe__container">
+                  <div className="recipe__list">
+                    <RecipeList cuisines={cuisines} />
+                  </div>
+                  <div className="pagination">
+                    <Pagination
+                      items={6}
+                      onPageChange={this.handlePageChange}
+                      pageSize={pageSize}
+                      currentPage={currentPage}
+                      startValue={startValue}
+                    />
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
           ) : (
-            <div className="recipe__container">
-              <div className="recipe__list">
-                <RecipeList cuisines={cuisines} />
-              </div>
-              <div className="pagination">
-                <Pagination
-                  items={cuisines.length}
-                  onPageChange={this.handlePageChange}
-                  pageSize={pageSize}
-                  currentPage={currentPage}
-                  startValue={startValue}
-                />
-              </div>
-            </div>
+            <Loader />
           )}
         </React.Fragment>
       );
