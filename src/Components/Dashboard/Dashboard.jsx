@@ -46,7 +46,6 @@ class Dashboard extends Component {
 
 	render() {
 		const { username, recipe_data } = this.state;
-		console.log(recipe_data);
 		const { liked_recipe, recommendations } = recipe_data;
 		if (!Boolean(username)) return <Loader />;
 		return (
