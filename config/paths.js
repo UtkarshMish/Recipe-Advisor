@@ -50,7 +50,7 @@ module.exports = {
 	testsSetup: resolveModule(resolveApp, "src/setupTests"),
 	proxySetup: resolveApp("src/setupProxy.js"),
 	appNodeModules: resolveApp("node_modules"),
-	servedPath: resolveApp("."),
+	servedPath: "/",
 	publicUrlOrPath,
 };
 

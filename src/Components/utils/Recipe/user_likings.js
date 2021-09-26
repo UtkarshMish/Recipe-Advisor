@@ -5,6 +5,7 @@ export const updateLikings = async (recommendation = false, liked = null, recipe
 	if (!token) {
 		return false;
 	}
+	console.log(recipe_id);
 	let response = await axios.post(process.env.REACT_APP_USER_LIKED, {
 		user,
 		token,
