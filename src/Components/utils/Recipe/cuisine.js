@@ -5,6 +5,5 @@ export const getCuisine = async (PAGE) => {
 };
 export const getRecipe = async (id) => {
 	let response = await axios.get(`${process.env.REACT_APP_RECIPE}/${id}`);
-	console.log(response.data);
 	return response.data;
 };
